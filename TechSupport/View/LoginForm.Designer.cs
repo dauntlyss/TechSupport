@@ -65,26 +65,27 @@
             // 
             this.passwordTextBox.Location = new System.Drawing.Point(290, 231);
             this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(357, 20);
             this.passwordTextBox.TabIndex = 4;
             // 
             // errorMessageLabel
             // 
             this.errorMessageLabel.AutoSize = true;
-            this.errorMessageLabel.Location = new System.Drawing.Point(445, 258);
+            this.errorMessageLabel.Location = new System.Drawing.Point(287, 257);
             this.errorMessageLabel.Name = "errorMessageLabel";
             this.errorMessageLabel.Size = new System.Drawing.Size(0, 13);
             this.errorMessageLabel.TabIndex = 5;
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(290, 285);
+            this.loginButton.Location = new System.Drawing.Point(290, 287);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(75, 23);
             this.loginButton.TabIndex = 6;
             this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            this.loginButton.Click += new System.EventHandler(this.LoginButton_Click);
             // 
             // LoginForm
             // 
