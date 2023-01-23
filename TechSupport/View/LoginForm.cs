@@ -31,7 +31,7 @@ namespace TechSupport
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (usernameTextBox.Text == "Jane" && passwordLabel.Text == "test1234")
+            if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
                 usernameEntered= "Jane";
                 HideErrorMessage();
@@ -40,6 +40,10 @@ namespace TechSupport
                 {
                     mainForm = new MainForm();
                     FormClosed += MainForm_FormClosed;
+                }
+                else
+                {
+                    this.ShowInvalidErrorMessage();
                 }
 
                 mainForm.Show(this);
@@ -66,6 +70,12 @@ namespace TechSupport
         private void PasswordTextBox_TextChanged(object sender, EventArgs e)
         {
             HideErrorMessage();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            mainForm = null;
+            Show();
         }
     }
 }
