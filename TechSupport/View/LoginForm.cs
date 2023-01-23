@@ -29,7 +29,7 @@ namespace TechSupport
             InitializeComponent();
         }
 
-        private void loginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
             {
@@ -41,14 +41,13 @@ namespace TechSupport
                     mainForm = new MainForm();
                     FormClosed += MainForm_FormClosed;
                 }
-                else
+                mainForm.Show(this);
+                Hide();
+
+            } else
                 {
                     this.ShowInvalidErrorMessage();
                 }
-
-                mainForm.Show(this);
-                Hide();
-            }
         }
 
         private void HideErrorMessage()
@@ -77,5 +76,6 @@ namespace TechSupport
             mainForm = null;
             Show();
         }
+
     }
 }
