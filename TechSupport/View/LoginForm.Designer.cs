@@ -32,6 +32,8 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.errorMessageLabel = new System.Windows.Forms.Label();
+            this.loginButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // usernameLabel
@@ -66,16 +68,38 @@
             this.passwordTextBox.Size = new System.Drawing.Size(357, 20);
             this.passwordTextBox.TabIndex = 4;
             // 
+            // errorMessageLabel
+            // 
+            this.errorMessageLabel.AutoSize = true;
+            this.errorMessageLabel.Location = new System.Drawing.Point(445, 258);
+            this.errorMessageLabel.Name = "errorMessageLabel";
+            this.errorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorMessageLabel.TabIndex = 5;
+            // 
+            // loginButton
+            // 
+            this.loginButton.Location = new System.Drawing.Point(290, 285);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(75, 23);
+            this.loginButton.TabIndex = 6;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = true;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.loginButton);
+            this.Controls.Add(this.errorMessageLabel);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Form";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -88,6 +112,8 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.MaskedTextBox passwordTextBox;
+        private System.Windows.Forms.Label errorMessageLabel;
+        private System.Windows.Forms.Button loginButton;
     }
 }
 
