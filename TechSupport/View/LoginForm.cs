@@ -36,13 +36,10 @@ namespace TechSupport
                 usernameEntered= "Jane";
                 HideErrorMessage();
 
-                if (mainForm == null)
-                {
-                    mainForm = new MainForm();
-                    FormClosed += MainForm_FormClosed;
-                }
-                mainForm.Show(this);
-                Hide();
+                this.Hide();
+                mainForm = new MainForm();
+                mainForm.Closed += (s, args) => this.Close();
+                mainForm.Show(); 
 
             } else
                 {
@@ -71,11 +68,9 @@ namespace TechSupport
             HideErrorMessage();
         }
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mainForm = null;
-            Show();
+            Application.Exit();
         }
-
     }
 }
