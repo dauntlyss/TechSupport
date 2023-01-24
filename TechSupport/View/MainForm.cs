@@ -26,12 +26,9 @@ namespace TechSupport.View
         public MainForm()
         {
             InitializeComponent();
+            usernameLabel.Text = LoginForm.usernameEntered;
         }
 
-        private void MainForm_Load(Object sender, EventArgs e)
-        {
-            usernameLabel.Text = "Jane";
-        }
         private void LogoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
