@@ -31,7 +31,7 @@ namespace TechSupport
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            if (usernameTextBox.Text == "Jane" && passwordTextBox.Text == "test1234")
+            if (usernameTextBox.Text == "jane" && passwordTextBox.Text == "test1234")
             {
                 usernameEntered= "Jane";
                 HideErrorMessage();
