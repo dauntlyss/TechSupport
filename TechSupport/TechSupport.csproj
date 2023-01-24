@@ -50,6 +50,12 @@
     <Compile Include="Controller\SearchIncidentController.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="Model\Incident.cs" />
+    <Compile Include="View\AddIncidentDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddIncidentDialog.Designer.cs">
+      <DependentUpon>AddIncidentDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,12 @@
     <Compile Include="View\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SearchIncidentDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SearchIncidentDialog.Designer.cs">
+      <DependentUpon>SearchIncidentDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -73,11 +85,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddIncidentDialog.resx">
+      <DependentUpon>AddIncidentDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SearchIncidentDialog.resx">
+      <DependentUpon>SearchIncidentDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
