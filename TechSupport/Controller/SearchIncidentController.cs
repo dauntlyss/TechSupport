@@ -29,12 +29,15 @@ namespace TechSupport.Controller
             return this.incidentSource.GetAllSearchResults();
         }
 
-
+        /// <summary>
+        /// Searches the incidents based on the specified customer identifier.
+        /// </summary>
+        /// <param name="customerId">The customer identifier.</param>
         public void Search(int customerId)
         {
             if (customerId < 0)
             {
-                throw new ArgumentNullException("Customer ID much be greater than 0.");
+                throw new ArgumentNullException("Customer ID must be greater than 0.");
             }
             this.incidentSource.Search(customerId);
         }
