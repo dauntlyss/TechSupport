@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TechSupport.Controller;
 
 
 namespace TechSupport.View
@@ -19,6 +20,7 @@ namespace TechSupport.View
     public partial class MainForm : Form
     {
         private LoginForm loginForm;
+        private readonly AddIncidentController incidentController;
 
         /// <summary>
         /// Initializes a new instance of the MainForm class.
@@ -26,7 +28,14 @@ namespace TechSupport.View
         public MainForm()
         {
             InitializeComponent();
+            incidentController = new AddIncidentController();
             usernameLabel.Text = LoginForm.usernameEntered;
+            RefreshIncidentDataGrid();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            RefreshIncidentDataGrid();
         }
 
         private void LogoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -40,6 +49,32 @@ namespace TechSupport.View
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void RefreshIncidentDataGrid()
+        {
+            incidentDataGridView.DataSource = null;
+            incidentDataGridView.DataSource = this.incidentController.GetAllIncidents();
+        }
+
+        private void AddIncidentButton_Click(object sender, EventArgs e)
+        {
+            using (Form addIncidentDialog = new AddIncidentDialog())
+            {
+                DialogResult result = addIncidentDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    this.RefreshIncidentDataGrid();
+                }
+            }
+        }
+
+        private void SearchIncidentButton_Click(object sender, EventArgs e)
+        {
+            using (Form searchIncidentDialog = new SearchIncidentDialog())
+            {
+                DialogResult result = searchIncidentDialog.ShowDialog();
+            }
         }
     }
 }
