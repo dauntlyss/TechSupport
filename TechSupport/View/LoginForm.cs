@@ -12,8 +12,9 @@ namespace TechSupport
     /// </summary>
     public partial class LoginForm : Form
     {
-        public static string usernameEntered = "";
-        private MainForm mainForm;
+
+        public string Username { get; set; }
+        string password;
 
         /// <summary>
         /// Initializes a new instance of the LoginForm class.
@@ -23,19 +24,26 @@ namespace TechSupport
             InitializeComponent();
         }
 
+        private Boolean CheckCredentials()
+        {
+            Username = usernameTextBox.Text;
+            password = passwordTextBox.Text;
+
+            return (String.Equals(Username, "jane") && String.Equals(password, "test1234"));
+
+        }
+
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            if (usernameTextBox.Text == "jane" && passwordTextBox.Text == "test1234")
+            if (CheckCredentials())
             {
-                usernameEntered= "Jane";
-                HideErrorMessage();
 
+                MainForm newMainForm = new MainForm(this);
+                newMainForm.Show();
                 this.Hide();
-                mainForm = new MainForm();
-                mainForm.Closed += (s, args) => this.Close();
-                mainForm.Show(); 
 
-            } else
+            }
+            else
                 {
                     this.ShowInvalidErrorMessage();
                 }
@@ -52,19 +60,21 @@ namespace TechSupport
             errorMessageLabel.ForeColor = Color.Red;
         }
 
-        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
+        private void UserInputEntered(object sender, EventArgs e)
         {
-            HideErrorMessage();
-        }
-
-        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
-        {
-            HideErrorMessage();
+            errorMessageLabel.Text = "";
         }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        public void LogOut()
+        {
+            usernameTextBox.Clear();
+            passwordTextBox.Clear();
+            this.Show();
         }
     }
 }

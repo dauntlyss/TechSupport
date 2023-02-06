@@ -10,7 +10,7 @@ namespace TechSupport.View
     /// </summary>
     public partial class AddIncidentDialog : Form
     {
-        private readonly AddIncidentController incidentController;
+        private readonly AddIncidentController _incidentController;
 
         /// <summary>
         /// Initializes a new instance of the AddIncidentDialog class.
@@ -18,7 +18,7 @@ namespace TechSupport.View
         public AddIncidentDialog()
         {
             InitializeComponent();
-            this.incidentController = new AddIncidentController();
+            this._incidentController = new AddIncidentController();
         }
 
         private void addIncidentButton_Click(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace TechSupport.View
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
 
-                this.incidentController.Add(new Model.Incident(customerID, title, description));
+                this._incidentController.Add(new Model.Incident(customerID, title, description));
 
                 this.DialogResult = DialogResult.OK;
             }
@@ -46,13 +46,37 @@ namespace TechSupport.View
 
         private void HideErrorMessage()
         {
-            errorMessageLabel.Text = "";
+            
+            descriptionErrorMessageLabel.Text = "";
+            customerIDErrorMessageLabel.Text = "";
+            titleErrorMessageLabel.Text = "";
+            
         }
 
         private void ShowInvalidErrorMessage()
         {
-            errorMessageLabel.Text = "CustomerID must be a number greater than 0 and fields cannot be empty.";
-            errorMessageLabel.ForeColor = Color.Red;
+            if (this.customerIDTextBox.Text == "")
+            {
+                customerIDErrorMessageLabel.Text = "CustomerID cannot be empty.";
+                customerIDErrorMessageLabel.ForeColor = Color.Red;
+            }else
+            {
+                customerIDErrorMessageLabel.Text = "CustomerID must be a number greater than 0.";
+                customerIDErrorMessageLabel.ForeColor = Color.Red;
+            }
+
+            if (this.titleTextBox.Text == "") 
+            {
+                titleErrorMessageLabel.Text = "Incident title cannot be blank.";
+                titleErrorMessageLabel.ForeColor = Color.Red;
+            }
+
+            if (this.descriptionTextBox.Text == "")
+            {
+                descriptionErrorMessageLabel.Text = "Description cannot be blank.";
+                descriptionErrorMessageLabel.ForeColor = Color.Red;
+            }
+
         }
 
         private void CustomerID_TextChanged(object sender, EventArgs e)
@@ -69,5 +93,6 @@ namespace TechSupport.View
         {
             HideErrorMessage();
         }
+
     }
 }

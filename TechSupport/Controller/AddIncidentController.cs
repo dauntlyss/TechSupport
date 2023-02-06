@@ -10,14 +10,14 @@ namespace TechSupport.Controller
     /// </summary>
     public class AddIncidentController
     {
-        private readonly IncidentDAL incidentSource;
+        private readonly IncidentDAL _incidentSource;
 
         /// <summary>
         /// Initializes a new instance of the AddIncidentController class.
         /// </summary>
         public AddIncidentController()
         {
-            this.incidentSource = new IncidentDAL();
+            this._incidentSource = new IncidentDAL();
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace TechSupport.Controller
         /// <returns>A list of all the incidents</returns>
         public List<Incident> GetAllIncidents()
         {
-            return this.incidentSource.GetAllIncidents();
+            return this._incidentSource.GetAllIncidents();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace TechSupport.Controller
             {
                 throw new ArgumentNullException("Incident cannot be null.");
             }
-            this.incidentSource.Add(incident);
+            this._incidentSource.Add(incident);
         }
     }
 }

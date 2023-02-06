@@ -10,7 +10,7 @@ namespace TechSupport.View
     /// </summary>
     public partial class SearchIncidentDialog : Form
     {
-        private readonly SearchIncidentController incidentController;
+        private readonly SearchIncidentController _incidentController;
 
         /// <summary>
         /// Initializes a new instance of the SearchIncidentDialog class.
@@ -18,13 +18,13 @@ namespace TechSupport.View
         public SearchIncidentDialog()
         {
             InitializeComponent();
-            this.incidentController = new SearchIncidentController();
+            this._incidentController = new SearchIncidentController();
         }
 
         private void RefreshSearchDataGrid()
         {
             this.resultsDataGridView.DataSource = null;
-            this.resultsDataGridView.DataSource = incidentController.GetSearchIncidents();
+            this.resultsDataGridView.DataSource = _incidentController.GetSearchIncidents();
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -33,7 +33,7 @@ namespace TechSupport.View
             {
                 var customerID = int.Parse(this.customerIdTextBox.Text);
 
-                this.incidentController.Search(customerID);
+                this._incidentController.Search(customerID);
                 this.RefreshSearchDataGrid();
             }
             catch (Exception)

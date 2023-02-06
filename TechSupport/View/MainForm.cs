@@ -12,18 +12,21 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainForm : Form
     {
-        private LoginForm loginForm;
+        bool logOut;
+        private LoginForm currentLogin;
         private readonly AddIncidentController incidentController;
 
         /// <summary>
         /// Initializes a new instance of the MainForm class.
         /// </summary>
-        public MainForm()
+        public MainForm(LoginForm newLogin)
         {
             InitializeComponent();
+            currentLogin = newLogin;
+            usernameLabel.Text = currentLogin.Username;
             incidentController = new AddIncidentController();
-            usernameLabel.Text = LoginForm.usernameEntered;
             RefreshIncidentDataGrid();
+            logOut = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -33,15 +36,21 @@ namespace TechSupport.View
 
         private void LogoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            loginForm = new LoginForm();
-            loginForm.Closed += (s, args) => this.Close();
-            loginForm.Show();
+            //this.Hide();
+            //currentLogin = new LoginForm();
+            //currentLogin.Closed += (s, args) => this.Close();
+            //currentLogin.Show();
+            logOut = true;
+            currentLogin.LogOut();
+            this.Close();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!logOut)
+            {
+                Application.Exit();
+            }
         }
 
         private void RefreshIncidentDataGrid()

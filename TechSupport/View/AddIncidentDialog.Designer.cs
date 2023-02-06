@@ -36,7 +36,9 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.addIncidentButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.errorMessageLabel = new System.Windows.Forms.Label();
+            this.descriptionErrorMessageLabel = new System.Windows.Forms.Label();
+            this.titleErrorMessageLabel = new System.Windows.Forms.Label();
+            this.customerIDErrorMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // customerIdLabel
@@ -116,20 +118,38 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // errorMessageLabel
+            // descriptionErrorMessageLabel
             // 
-            this.errorMessageLabel.AutoSize = true;
-            this.errorMessageLabel.Location = new System.Drawing.Point(242, 323);
-            this.errorMessageLabel.Name = "errorMessageLabel";
-            this.errorMessageLabel.Size = new System.Drawing.Size(0, 13);
-            this.errorMessageLabel.TabIndex = 10;
+            this.descriptionErrorMessageLabel.AutoSize = true;
+            this.descriptionErrorMessageLabel.Location = new System.Drawing.Point(242, 323);
+            this.descriptionErrorMessageLabel.Name = "descriptionErrorMessageLabel";
+            this.descriptionErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.descriptionErrorMessageLabel.TabIndex = 10;
+            // 
+            // titleErrorMessageLabel
+            // 
+            this.titleErrorMessageLabel.AutoSize = true;
+            this.titleErrorMessageLabel.Location = new System.Drawing.Point(242, 166);
+            this.titleErrorMessageLabel.Name = "titleErrorMessageLabel";
+            this.titleErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.titleErrorMessageLabel.TabIndex = 11;
+            // 
+            // customerIDErrorMessageLabel
+            // 
+            this.customerIDErrorMessageLabel.AutoSize = true;
+            this.customerIDErrorMessageLabel.Location = new System.Drawing.Point(242, 83);
+            this.customerIDErrorMessageLabel.Name = "customerIDErrorMessageLabel";
+            this.customerIDErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.customerIDErrorMessageLabel.TabIndex = 12;
             // 
             // AddIncidentDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 450);
-            this.Controls.Add(this.errorMessageLabel);
+            this.Controls.Add(this.customerIDErrorMessageLabel);
+            this.Controls.Add(this.titleErrorMessageLabel);
+            this.Controls.Add(this.descriptionErrorMessageLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addIncidentButton);
             this.Controls.Add(this.descriptionTextBox);
@@ -159,6 +179,8 @@
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Button addIncidentButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Label errorMessageLabel;
+        private System.Windows.Forms.Label descriptionErrorMessageLabel;
+        private System.Windows.Forms.Label titleErrorMessageLabel;
+        private System.Windows.Forms.Label customerIDErrorMessageLabel;
     }
 }
