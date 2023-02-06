@@ -12,6 +12,7 @@ namespace TechSupport
     /// </summary>
     public partial class LoginForm : Form
     {
+        //public static string usernameEntered = "";
 
         public string Username { get; set; }
         string password;
