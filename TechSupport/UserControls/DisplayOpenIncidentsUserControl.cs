@@ -6,6 +6,11 @@ using TechSupport.Model;
 
 namespace TechSupport.UserControls
 {
+    /// <summary>
+    /// User Control that encapsulates sthe loading of open incidents
+    /// Author: Alyssa Harris
+    /// Version: 2/6/23
+    /// </summary>
     public partial class DisplayOpenIncidentUserControl : UserControl
     {
         #region Data Members

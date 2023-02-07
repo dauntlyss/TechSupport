@@ -51,7 +51,11 @@ namespace TechSupport.DAL
             _incidents.Add(incident);
         }
 
-
+        /// <summary>
+        /// Searches for all incidents under the inputed customer id
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <exception cref="ArgumentNullException"></exception>
         public void Search(int customerId)
         {
             _searchResults.Clear();

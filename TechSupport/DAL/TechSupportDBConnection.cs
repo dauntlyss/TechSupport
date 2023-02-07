@@ -13,7 +13,10 @@ namespace TechSupport.DAL
     {
         #region Methods
 
-
+        /// <summary>
+        /// Used to connect to the DB
+        /// </summary>
+        /// <returns>Conntection to the DB</returns>
         public static SqlConnection GetConnection()
         {
             string connectionString = "Data Source=localhost;Initial Catalog=TechSupport;" +
