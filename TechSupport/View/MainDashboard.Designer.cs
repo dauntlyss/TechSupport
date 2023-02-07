@@ -36,12 +36,14 @@
             this.searchIncidentsTabPage = new System.Windows.Forms.TabPage();
             this.searchIncidentUserControl1 = new TechSupport.UserControls.SearchIncidentUserControl();
             this.openIncidentsTabPage = new System.Windows.Forms.TabPage();
+            this.displayOpenIncidentUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentUserControl();
             this.logoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.mainDashboardTabControl.SuspendLayout();
             this.addIncidentTabPage.SuspendLayout();
             this.loadAllIncidentsTabPage.SuspendLayout();
             this.searchIncidentsTabPage.SuspendLayout();
+            this.openIncidentsTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainDashboardTabControl
@@ -113,6 +115,7 @@
             // 
             // openIncidentsTabPage
             // 
+            this.openIncidentsTabPage.Controls.Add(this.displayOpenIncidentUserControl1);
             this.openIncidentsTabPage.Location = new System.Drawing.Point(4, 22);
             this.openIncidentsTabPage.Name = "openIncidentsTabPage";
             this.openIncidentsTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -120,6 +123,13 @@
             this.openIncidentsTabPage.TabIndex = 3;
             this.openIncidentsTabPage.Text = "Display Open Incidents";
             this.openIncidentsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // displayOpenIncidentUserControl1
+            // 
+            this.displayOpenIncidentUserControl1.Location = new System.Drawing.Point(5, 10);
+            this.displayOpenIncidentUserControl1.Name = "displayOpenIncidentUserControl1";
+            this.displayOpenIncidentUserControl1.Size = new System.Drawing.Size(781, 383);
+            this.displayOpenIncidentUserControl1.TabIndex = 0;
             // 
             // logoutLinkLabel
             // 
@@ -155,6 +165,7 @@
             this.addIncidentTabPage.ResumeLayout(false);
             this.loadAllIncidentsTabPage.ResumeLayout(false);
             this.searchIncidentsTabPage.ResumeLayout(false);
+            this.openIncidentsTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +183,6 @@
         private System.Windows.Forms.Label usernameLabel;
         private UserControls.LoadIncidentUserControl loadIncidentUserControl1;
         private UserControls.SearchIncidentUserControl searchIncidentUserControl1;
+        private UserControls.DisplayOpenIncidentUserControl displayOpenIncidentUserControl1;
     }
 }
