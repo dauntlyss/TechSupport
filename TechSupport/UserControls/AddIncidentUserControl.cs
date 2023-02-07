@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TechSupport.Controller;
 
@@ -29,7 +23,7 @@ namespace TechSupport.UserControls
         /// </summary>
         public AddIncidentUserControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             this._incidentController = new IncidentController();
         }
         #endregion
@@ -37,6 +31,7 @@ namespace TechSupport.UserControls
         #region Methods
         private void addIncidentButton_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 var customerID = int.Parse(this.customerIDTextBox.Text);
@@ -44,8 +39,7 @@ namespace TechSupport.UserControls
                 var description = this.descriptionTextBox.Text;
 
                 this._incidentController.Add(new Model.Incident(customerID, title, description));
-
-                this.DialogResult = DialogResult.OK;
+                this.ShowSuccessMessage();
             }
             catch (Exception)
             {
@@ -53,9 +47,22 @@ namespace TechSupport.UserControls
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void clearButton_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            this.HideSuccessMessage();
+            this.customerIDTextBox.Clear();
+            this.titleTextBox.Clear();
+            this.descriptionTextBox.Clear();
+        }
+
+        private void ShowSuccessMessage()
+        {
+            successMessageLabel.Text = "Incident added!";
+            successMessageLabel.ForeColor = Color.Green;
+        }
+        private void HideSuccessMessage()
+        {
+            successMessageLabel.Text = "";
         }
 
         private void HideErrorMessage()
@@ -94,20 +101,12 @@ namespace TechSupport.UserControls
 
         }
 
-        private void CustomerID_TextChanged(object sender, EventArgs e)
+        private void UserInputChanged(object sender, EventArgs e)
         {
-            HideErrorMessage();
-        }
-
-        private void Title_TextChanged(object sender, EventArgs e)
-        {
-            HideErrorMessage();
-        }
-
-        private void Description_TextChanged(object sender, EventArgs e)
-        {
+            this.HideSuccessMessage();
             HideErrorMessage();
         }
         #endregion
+
     }
 }

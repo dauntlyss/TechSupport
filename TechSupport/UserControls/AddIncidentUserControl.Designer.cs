@@ -31,7 +31,7 @@
             this.customerIDErrorMessageLabel = new System.Windows.Forms.Label();
             this.titleErrorMessageLabel = new System.Windows.Forms.Label();
             this.descriptionErrorMessageLabel = new System.Windows.Forms.Label();
-            this.cancelButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.addIncidentButton = new System.Windows.Forms.Button();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.titleTextBox = new System.Windows.Forms.TextBox();
@@ -39,6 +39,7 @@
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
             this.customerIdLabel = new System.Windows.Forms.Label();
+            this.successMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // customerIDErrorMessageLabel
@@ -65,15 +66,16 @@
             this.descriptionErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
             this.descriptionErrorMessageLabel.TabIndex = 21;
             // 
-            // cancelButton
+            // clearButton
             // 
-            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelButton.Location = new System.Drawing.Point(412, 327);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(133, 45);
-            this.cancelButton.TabIndex = 20;
-            this.cancelButton.Text = "Cancel";
-            this.cancelButton.UseVisualStyleBackColor = true;
+            this.clearButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(412, 327);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(133, 45);
+            this.clearButton.TabIndex = 20;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // addIncidentButton
             // 
@@ -84,6 +86,7 @@
             this.addIncidentButton.TabIndex = 19;
             this.addIncidentButton.Text = "Add";
             this.addIncidentButton.UseVisualStyleBackColor = true;
+            this.addIncidentButton.Click += new System.EventHandler(this.addIncidentButton_Click);
             // 
             // descriptionTextBox
             // 
@@ -92,6 +95,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(299, 108);
             this.descriptionTextBox.TabIndex = 18;
+            this.descriptionTextBox.TextChanged += new System.EventHandler(this.UserInputChanged);
             // 
             // titleTextBox
             // 
@@ -99,6 +103,7 @@
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(299, 20);
             this.titleTextBox.TabIndex = 17;
+            this.titleTextBox.TextChanged += new System.EventHandler(this.UserInputChanged);
             // 
             // customerIDTextBox
             // 
@@ -106,6 +111,7 @@
             this.customerIDTextBox.Name = "customerIDTextBox";
             this.customerIDTextBox.Size = new System.Drawing.Size(299, 20);
             this.customerIDTextBox.TabIndex = 16;
+            this.customerIDTextBox.TextChanged += new System.EventHandler(this.UserInputChanged);
             // 
             // descriptionLabel
             // 
@@ -137,14 +143,23 @@
             this.customerIdLabel.TabIndex = 13;
             this.customerIdLabel.Text = "Customer ID";
             // 
+            // successMessageLabel
+            // 
+            this.successMessageLabel.AutoSize = true;
+            this.successMessageLabel.Location = new System.Drawing.Point(246, 290);
+            this.successMessageLabel.Name = "successMessageLabel";
+            this.successMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.successMessageLabel.TabIndex = 24;
+            // 
             // AddIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.successMessageLabel);
             this.Controls.Add(this.customerIDErrorMessageLabel);
             this.Controls.Add(this.titleErrorMessageLabel);
             this.Controls.Add(this.descriptionErrorMessageLabel);
-            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.clearButton);
             this.Controls.Add(this.addIncidentButton);
             this.Controls.Add(this.descriptionTextBox);
             this.Controls.Add(this.titleTextBox);
@@ -164,7 +179,7 @@
         private System.Windows.Forms.Label customerIDErrorMessageLabel;
         private System.Windows.Forms.Label titleErrorMessageLabel;
         private System.Windows.Forms.Label descriptionErrorMessageLabel;
-        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button addIncidentButton;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.TextBox titleTextBox;
@@ -172,5 +187,6 @@
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label customerIdLabel;
+        private System.Windows.Forms.Label successMessageLabel;
     }
 }
