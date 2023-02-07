@@ -11,11 +11,13 @@ namespace TechSupport.Controller
     public class IncidentController
     {
         private readonly IncidentDAL _incidentSource;
+        private readonly IncidentDBDAL _incidentDBSource;
 
         ///Creates an incidentController object to add incidents
         public IncidentController()
         {
             this._incidentSource = new IncidentDAL();
+            this._incidentDBSource = new IncidentDBDAL();
         }
 
         /// <summary>
@@ -61,6 +63,15 @@ namespace TechSupport.Controller
                 throw new ArgumentNullException("Customer ID must be greater than 0.");
             }
             this._incidentSource.Search(customerID);
+        }
+
+        /// <summary>
+        /// method used to return open incidents from DAL
+        /// </summary>
+        /// <returns>return list of open incidents</returns>
+        public List<OpenIncident> GetOpenIncidents()
+        {
+            return _incidentDBSource.GetOpenIncidents();
         }
 
     }
