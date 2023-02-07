@@ -39,8 +39,8 @@ namespace TechSupport
             if (CheckCredentials())
             {
 
-                MainForm newMainForm = new MainForm(this);
-                newMainForm.Show();
+                MainDashboard newMainDashboard = new MainDashboard(this);
+                newMainDashboard.Show();
                 this.Hide();
 
             }
