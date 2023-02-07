@@ -10,7 +10,7 @@ namespace TechSupport.View
     /// </summary>
     public partial class SearchIncidentDialog : Form
     {
-        private readonly SearchIncidentController _incidentController;
+        private readonly IncidentController _incidentController;
 
         /// <summary>
         /// Initializes a new instance of the SearchIncidentDialog class.
@@ -18,7 +18,7 @@ namespace TechSupport.View
         public SearchIncidentDialog()
         {
             InitializeComponent();
-            this._incidentController = new SearchIncidentController();
+            this._incidentController = new IncidentController();
         }
 
         private void RefreshSearchDataGrid()

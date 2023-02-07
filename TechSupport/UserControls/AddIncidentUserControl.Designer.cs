@@ -28,18 +28,149 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.customerIDErrorMessageLabel = new System.Windows.Forms.Label();
+            this.titleErrorMessageLabel = new System.Windows.Forms.Label();
+            this.descriptionErrorMessageLabel = new System.Windows.Forms.Label();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.addIncidentButton = new System.Windows.Forms.Button();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.titleTextBox = new System.Windows.Forms.TextBox();
+            this.customerIDTextBox = new System.Windows.Forms.TextBox();
+            this.descriptionLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.customerIdLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // customerIDErrorMessageLabel
+            // 
+            this.customerIDErrorMessageLabel.AutoSize = true;
+            this.customerIDErrorMessageLabel.Location = new System.Drawing.Point(243, 50);
+            this.customerIDErrorMessageLabel.Name = "customerIDErrorMessageLabel";
+            this.customerIDErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.customerIDErrorMessageLabel.TabIndex = 23;
+            // 
+            // titleErrorMessageLabel
+            // 
+            this.titleErrorMessageLabel.AutoSize = true;
+            this.titleErrorMessageLabel.Location = new System.Drawing.Point(243, 133);
+            this.titleErrorMessageLabel.Name = "titleErrorMessageLabel";
+            this.titleErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.titleErrorMessageLabel.TabIndex = 22;
+            // 
+            // descriptionErrorMessageLabel
+            // 
+            this.descriptionErrorMessageLabel.AutoSize = true;
+            this.descriptionErrorMessageLabel.Location = new System.Drawing.Point(243, 290);
+            this.descriptionErrorMessageLabel.Name = "descriptionErrorMessageLabel";
+            this.descriptionErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
+            this.descriptionErrorMessageLabel.TabIndex = 21;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelButton.Location = new System.Drawing.Point(412, 327);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(133, 45);
+            this.cancelButton.TabIndex = 20;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            // 
+            // addIncidentButton
+            // 
+            this.addIncidentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addIncidentButton.Location = new System.Drawing.Point(246, 327);
+            this.addIncidentButton.Name = "addIncidentButton";
+            this.addIncidentButton.Size = new System.Drawing.Size(133, 45);
+            this.addIncidentButton.TabIndex = 19;
+            this.addIncidentButton.Text = "Add";
+            this.addIncidentButton.UseVisualStyleBackColor = true;
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(246, 170);
+            this.descriptionTextBox.Multiline = true;
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(299, 108);
+            this.descriptionTextBox.TabIndex = 18;
+            // 
+            // titleTextBox
+            // 
+            this.titleTextBox.Location = new System.Drawing.Point(246, 99);
+            this.titleTextBox.Name = "titleTextBox";
+            this.titleTextBox.Size = new System.Drawing.Size(299, 20);
+            this.titleTextBox.TabIndex = 17;
+            // 
+            // customerIDTextBox
+            // 
+            this.customerIDTextBox.Location = new System.Drawing.Point(246, 17);
+            this.customerIDTextBox.Name = "customerIDTextBox";
+            this.customerIDTextBox.Size = new System.Drawing.Size(299, 20);
+            this.customerIDTextBox.TabIndex = 16;
+            // 
+            // descriptionLabel
+            // 
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descriptionLabel.Location = new System.Drawing.Point(96, 170);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(100, 20);
+            this.descriptionLabel.TabIndex = 15;
+            this.descriptionLabel.Text = "Description";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Location = new System.Drawing.Point(96, 99);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(43, 20);
+            this.titleLabel.TabIndex = 14;
+            this.titleLabel.Text = "Title";
+            // 
+            // customerIdLabel
+            // 
+            this.customerIdLabel.AutoSize = true;
+            this.customerIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customerIdLabel.Location = new System.Drawing.Point(96, 17);
+            this.customerIdLabel.Name = "customerIdLabel";
+            this.customerIdLabel.Size = new System.Drawing.Size(110, 20);
+            this.customerIdLabel.TabIndex = 13;
+            this.customerIdLabel.Text = "Customer ID";
             // 
             // AddIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.customerIDErrorMessageLabel);
+            this.Controls.Add(this.titleErrorMessageLabel);
+            this.Controls.Add(this.descriptionErrorMessageLabel);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.addIncidentButton);
+            this.Controls.Add(this.descriptionTextBox);
+            this.Controls.Add(this.titleTextBox);
+            this.Controls.Add(this.customerIDTextBox);
+            this.Controls.Add(this.descriptionLabel);
+            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.customerIdLabel);
             this.Name = "AddIncidentUserControl";
             this.Size = new System.Drawing.Size(640, 388);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label customerIDErrorMessageLabel;
+        private System.Windows.Forms.Label titleErrorMessageLabel;
+        private System.Windows.Forms.Label descriptionErrorMessageLabel;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Button addIncidentButton;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox titleTextBox;
+        private System.Windows.Forms.TextBox customerIDTextBox;
+        private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label customerIdLabel;
     }
 }

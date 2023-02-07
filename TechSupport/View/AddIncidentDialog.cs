@@ -10,17 +10,23 @@ namespace TechSupport.View
     /// </summary>
     public partial class AddIncidentDialog : Form
     {
-        private readonly AddIncidentController _incidentController;
+        #region Data members
 
+        private readonly IncidentController _incidentController;
+        #endregion
+
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the AddIncidentDialog class.
         /// </summary>
         public AddIncidentDialog()
         {
             InitializeComponent();
-            this._incidentController = new AddIncidentController();
+            this._incidentController = new IncidentController();
         }
+        #endregion
 
+        #region Methods
         private void addIncidentButton_Click(object sender, EventArgs e)
         {
             try
@@ -93,6 +99,6 @@ namespace TechSupport.View
         {
             HideErrorMessage();
         }
-
+        #endregion
     }
 }

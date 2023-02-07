@@ -46,10 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\AddIncidentController.cs" />
-    <Compile Include="Controller\SearchIncidentController.cs" />
+    <Compile Include="Controller\IncidentController.cs" />
     <Compile Include="DAL\IncidentDAL.cs" />
     <Compile Include="Model\Incident.cs" />
+    <Compile Include="UserControls\AddIncidentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AddIncidentUserControl.Designer.cs">
+      <DependentUpon>AddIncidentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DisplayOpenIncidentsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DisplayOpenIncidentsUserControl.Designer.cs">
+      <DependentUpon>DisplayOpenIncidentsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LoadIncidentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\LoadIncidentUserControl.Designer.cs">
+      <DependentUpon>LoadIncidentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SearchIncidentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SearchIncidentUserControl.Designer.cs">
+      <DependentUpon>SearchIncidentUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddIncidentDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +114,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\AddIncidentUserControl.resx">
+      <DependentUpon>AddIncidentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DisplayOpenIncidentsUserControl.resx">
+      <DependentUpon>DisplayOpenIncidentsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\LoadIncidentUserControl.resx">
+      <DependentUpon>LoadIncidentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SearchIncidentUserControl.resx">
+      <DependentUpon>SearchIncidentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AddIncidentDialog.resx">
       <DependentUpon>AddIncidentDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,8 +154,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

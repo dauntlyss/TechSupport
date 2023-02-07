@@ -14,7 +14,7 @@ namespace TechSupport.View
     {
         bool logOut;
         private LoginForm currentLogin;
-        private readonly AddIncidentController incidentController;
+        private readonly IncidentController incidentController;
 
         /// <summary>
         /// Initializes a new instance of the MainForm class.
@@ -24,7 +24,7 @@ namespace TechSupport.View
             InitializeComponent();
             currentLogin = newLogin;
             usernameLabel.Text = currentLogin.Username;
-            incidentController = new AddIncidentController();
+            incidentController = new IncidentController();
             RefreshIncidentDataGrid();
             logOut = false;
         }
