@@ -36,10 +36,6 @@ namespace TechSupport.View
 
         private void LogoutLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //this.Hide();
-            //currentLogin = new LoginForm();
-            //currentLogin.Closed += (s, args) => this.Close();
-            //currentLogin.Show();
             logOut = true;
             currentLogin.LogOut();
             this.Close();
