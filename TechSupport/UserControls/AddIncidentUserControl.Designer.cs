@@ -39,9 +39,9 @@
             this.titleLabel = new System.Windows.Forms.Label();
             this.customerLabel = new System.Windows.Forms.Label();
             this.successMessageLabel = new System.Windows.Forms.Label();
-            this.productLabel = new System.Windows.Forms.Label();
-            this.productComboBox = new System.Windows.Forms.ComboBox();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
+            this.productComboBox = new System.Windows.Forms.ComboBox();
+            this.productLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // customerIDErrorMessageLabel
@@ -55,7 +55,7 @@
             // titleErrorMessageLabel
             // 
             this.titleErrorMessageLabel.AutoSize = true;
-            this.titleErrorMessageLabel.Location = new System.Drawing.Point(243, 176);
+            this.titleErrorMessageLabel.Location = new System.Drawing.Point(246, 175);
             this.titleErrorMessageLabel.Name = "titleErrorMessageLabel";
             this.titleErrorMessageLabel.Size = new System.Drawing.Size(0, 13);
             this.titleErrorMessageLabel.TabIndex = 22;
@@ -92,7 +92,7 @@
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(246, 197);
+            this.descriptionTextBox.Location = new System.Drawing.Point(249, 197);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(299, 108);
@@ -101,7 +101,7 @@
             // 
             // titleTextBox
             // 
-            this.titleTextBox.Location = new System.Drawing.Point(246, 142);
+            this.titleTextBox.Location = new System.Drawing.Point(249, 141);
             this.titleTextBox.Name = "titleTextBox";
             this.titleTextBox.Size = new System.Drawing.Size(299, 20);
             this.titleTextBox.TabIndex = 17;
@@ -121,7 +121,7 @@
             // 
             this.titleLabel.AutoSize = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(96, 142);
+            this.titleLabel.Location = new System.Drawing.Point(96, 141);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(48, 20);
             this.titleLabel.TabIndex = 14;
@@ -145,39 +145,39 @@
             this.successMessageLabel.Size = new System.Drawing.Size(0, 13);
             this.successMessageLabel.TabIndex = 24;
             // 
-            // productLabel
+            // customerComboBox
             // 
-            this.productLabel.AutoSize = true;
-            this.productLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productLabel.Location = new System.Drawing.Point(96, 81);
-            this.productLabel.Name = "productLabel";
-            this.productLabel.Size = new System.Drawing.Size(76, 20);
-            this.productLabel.TabIndex = 25;
-            this.productLabel.Text = "Product:";
+            this.customerComboBox.FormattingEnabled = true;
+            this.customerComboBox.Location = new System.Drawing.Point(249, 25);
+            this.customerComboBox.Name = "customerComboBox";
+            this.customerComboBox.Size = new System.Drawing.Size(299, 21);
+            this.customerComboBox.TabIndex = 27;
             // 
             // productComboBox
             // 
             this.productComboBox.FormattingEnabled = true;
-            this.productComboBox.Location = new System.Drawing.Point(246, 79);
+            this.productComboBox.Location = new System.Drawing.Point(249, 81);
             this.productComboBox.Name = "productComboBox";
             this.productComboBox.Size = new System.Drawing.Size(299, 21);
-            this.productComboBox.TabIndex = 26;
+            this.productComboBox.TabIndex = 28;
             // 
-            // customerComboBox
+            // productLabel
             // 
-            this.customerComboBox.FormattingEnabled = true;
-            this.customerComboBox.Location = new System.Drawing.Point(246, 22);
-            this.customerComboBox.Name = "customerComboBox";
-            this.customerComboBox.Size = new System.Drawing.Size(299, 21);
-            this.customerComboBox.TabIndex = 27;
+            this.productLabel.AutoSize = true;
+            this.productLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productLabel.Location = new System.Drawing.Point(96, 82);
+            this.productLabel.Name = "productLabel";
+            this.productLabel.Size = new System.Drawing.Size(76, 20);
+            this.productLabel.TabIndex = 29;
+            this.productLabel.Text = "Product:";
             // 
             // AddIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.customerComboBox);
-            this.Controls.Add(this.productComboBox);
             this.Controls.Add(this.productLabel);
+            this.Controls.Add(this.productComboBox);
+            this.Controls.Add(this.customerComboBox);
             this.Controls.Add(this.successMessageLabel);
             this.Controls.Add(this.customerIDErrorMessageLabel);
             this.Controls.Add(this.titleErrorMessageLabel);
@@ -209,8 +209,8 @@
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label customerLabel;
         private System.Windows.Forms.Label successMessageLabel;
-        private System.Windows.Forms.Label productLabel;
-        private System.Windows.Forms.ComboBox productComboBox;
         private System.Windows.Forms.ComboBox customerComboBox;
+        private System.Windows.Forms.ComboBox productComboBox;
+        private System.Windows.Forms.Label productLabel;
     }
 }

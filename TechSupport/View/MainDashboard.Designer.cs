@@ -30,7 +30,6 @@
         {
             this.mainDashboardTabControl = new System.Windows.Forms.TabControl();
             this.addIncidentTabPage = new System.Windows.Forms.TabPage();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.loadAllIncidentsTabPage = new System.Windows.Forms.TabPage();
             this.loadIncidentUserControl1 = new TechSupport.UserControls.LoadIncidentUserControl();
             this.searchIncidentsTabPage = new System.Windows.Forms.TabPage();
@@ -39,6 +38,7 @@
             this.displayOpenIncidentUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentUserControl();
             this.logoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this.usernameLabel = new System.Windows.Forms.Label();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.mainDashboardTabControl.SuspendLayout();
             this.addIncidentTabPage.SuspendLayout();
             this.loadAllIncidentsTabPage.SuspendLayout();
@@ -69,13 +69,6 @@
             this.addIncidentTabPage.TabIndex = 0;
             this.addIncidentTabPage.Text = "Add Incident";
             this.addIncidentTabPage.UseVisualStyleBackColor = true;
-            // 
-            // addIncidentUserControl1
-            // 
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(0, 0);
-            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(789, 399);
-            this.addIncidentUserControl1.TabIndex = 0;
             // 
             // loadAllIncidentsTabPage
             // 
@@ -150,6 +143,13 @@
             this.usernameLabel.Size = new System.Drawing.Size(0, 13);
             this.usernameLabel.TabIndex = 2;
             // 
+            // addIncidentUserControl1
+            // 
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(3, 0);
+            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(789, 399);
+            this.addIncidentUserControl1.TabIndex = 0;
+            // 
             // MainDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,11 +178,11 @@
         private System.Windows.Forms.TabPage loadAllIncidentsTabPage;
         private System.Windows.Forms.TabPage searchIncidentsTabPage;
         private System.Windows.Forms.TabPage openIncidentsTabPage;
-        private UserControls.AddIncidentUserControl addIncidentUserControl1;
         private System.Windows.Forms.LinkLabel logoutLinkLabel;
         private System.Windows.Forms.Label usernameLabel;
         private UserControls.LoadIncidentUserControl loadIncidentUserControl1;
         private UserControls.SearchIncidentUserControl searchIncidentUserControl1;
         private UserControls.DisplayOpenIncidentUserControl displayOpenIncidentUserControl1;
+        private UserControls.AddIncidentUserControl addIncidentUserControl1;
     }
 }

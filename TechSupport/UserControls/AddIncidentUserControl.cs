@@ -34,7 +34,7 @@ namespace TechSupport.UserControls
             
             try
             {
-                var customerID = int.Parse(this.customerIDTextBox.Text);
+                var customerID = 3;
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
 
@@ -50,7 +50,7 @@ namespace TechSupport.UserControls
         private void clearButton_Click(object sender, EventArgs e)
         {
             this.HideSuccessMessage();
-            this.customerIDTextBox.Clear();
+            
             this.titleTextBox.Clear();
             this.descriptionTextBox.Clear();
         }
@@ -76,7 +76,7 @@ namespace TechSupport.UserControls
 
         private void ShowInvalidErrorMessage()
         {
-            if (this.customerIDTextBox.Text == "")
+            if ("" == "")
             {
                 customerIDErrorMessageLabel.Text = "CustomerID cannot be empty.";
                 customerIDErrorMessageLabel.ForeColor = Color.Red;
