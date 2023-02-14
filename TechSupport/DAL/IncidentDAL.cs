@@ -11,10 +11,10 @@ namespace TechSupport.DAL
     {
         private static List<Incident> _incidents = new List<Incident>
         {
-            new Incident(5489, "Issue Logging In", "When I try to log in, it give me and invalid error."),
-            new Incident(3295, "Need to change password", "My password is my ex-husbands name and I need to change it."),
-            new Incident(2300, "Help Changing Username", "I need to change my username so I can build a brand."),
-            new Incident(1689, "App is slow", "When I use the app it is slow, speed it up.")
+            new Incident(5489, "DRAFT10", "Issue Logging In", "When I try to log in, it give me and invalid error."),
+            new Incident(3295, "DRAFT10", "Need to change password", "My password is my ex-husbands name and I need to change it."),
+            new Incident(2300, "DRAFT10", "Help Changing Username", "I need to change my username so I can build a brand."),
+            new Incident(1689, "DRAFT10", "App is slow", "When I use the app it is slow, speed it up.")
         };
 
         private List<Incident> _searchResults = new List<Incident>();
