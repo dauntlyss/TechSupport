@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using TechSupport.Controller;
+using TechSupport.Model;
 
 namespace TechSupport.UserControls
 {
     /// <summary>
     /// User Control class that encapsulates the add incident controls
     /// Author: Alyssa Harris
-    /// Version: 2/6/2023
+    /// Version: 2/13/2023
     /// </summary>
     public partial class AddIncidentUserControl : UserControl
     {
         #region Data members
 
         private readonly IncidentController _incidentController;
+        private readonly CustomerController _customerController;
+        private readonly ProductController _productController;        
+        private readonly RegistrationController _registrationController;
         #endregion
 
         #region Constructors
@@ -25,21 +30,59 @@ namespace TechSupport.UserControls
         {
             this.InitializeComponent();
             this._incidentController = new IncidentController();
+            this._customerController = new CustomerController();
+            this._productController = new ProductController();
+            this._registrationController = new RegistrationController();
+
+            this.FillCustomerComboBox();
+            this.FillProductComboBox();
         }
         #endregion
 
         #region Methods
+
+        private List<ProductCodeAndName> FillProductComboBox()
+        {
+            List<ProductCodeAndName> products = _productController.GetAllProductCodeAndNames();
+            productComboBox.DataSource = products;
+            productComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            productComboBox.DisplayMember = "Name";
+            productComboBox.SelectedIndex = 0;
+            return products;
+        }
+
+        private List<CustomerIdAndName> FillCustomerComboBox()
+        {
+            List<CustomerIdAndName> customers = _customerController.GetAllCustomerIDAndNames();
+            customerComboBox.DataSource = customers;
+            customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            customerComboBox.DisplayMember = "Name";
+            customerComboBox.SelectedIndex = 0;
+            return customers;
+        }
         private void addIncidentButton_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
-                var customerID = 3;
+                int customerIndexSelected = customerComboBox.SelectedIndex;
+                int customerIDSelected = FillCustomerComboBox()[customerIndexSelected].CustomerID;
+                int productIndexSelected = productComboBox.SelectedIndex;
+                string productCodeSelected = FillProductComboBox()[productIndexSelected].ProductCode;
                 var title = this.titleTextBox.Text;
                 var description = this.descriptionTextBox.Text;
 
-                this._incidentController.Add(new Model.Incident(customerID, title, description));
+                if (title == "") {
+                    this.ShowInvalidErrorMessage();
+                }
+                if (description == "")
+                {
+                    this.ShowInvalidErrorMessage();
+                }
+                Incident newIncident = new Incident(customerIDSelected, productCodeSelected, title, description);
+                this._incidentController.Add(newIncident);
                 this.ShowSuccessMessage();
+                this.ClearForm();
             }
             catch (Exception)
             {
@@ -50,9 +93,14 @@ namespace TechSupport.UserControls
         private void clearButton_Click(object sender, EventArgs e)
         {
             this.HideSuccessMessage();
-            
             this.titleTextBox.Clear();
             this.descriptionTextBox.Clear();
+        }
+
+        private Boolean IsRegistered()
+        {
+            Boolean isRegistered = this._registrationController.IsCustomerProductRegistered(FillCustomerComboBox()[customerComboBox.SelectedIndex].CustomerID, FillProductComboBox()[productComboBox.SelectedIndex].ProductCode);
+            return isRegistered;
         }
 
         private void ShowSuccessMessage()
@@ -67,7 +115,7 @@ namespace TechSupport.UserControls
 
         private void HideErrorMessage()
         {
-
+            productErrorLabel.Text = "";
             descriptionErrorMessageLabel.Text = "";
             customerIDErrorMessageLabel.Text = "";
             titleErrorMessageLabel.Text = "";
@@ -76,17 +124,12 @@ namespace TechSupport.UserControls
 
         private void ShowInvalidErrorMessage()
         {
-            if ("" == "")
+            if (IsRegistered() == false)
             {
-                customerIDErrorMessageLabel.Text = "CustomerID cannot be empty.";
-                customerIDErrorMessageLabel.ForeColor = Color.Red;
+                productErrorLabel.Text = "No registration is associated with this product.";
+                productErrorLabel.ForeColor = Color.Red;
             }
-            else
-            {
-                customerIDErrorMessageLabel.Text = "CustomerID must be a number greater than 0.";
-                customerIDErrorMessageLabel.ForeColor = Color.Red;
-            }
-
+            
             if (this.titleTextBox.Text == "")
             {
                 titleErrorMessageLabel.Text = "Incident title cannot be blank.";
@@ -103,8 +146,32 @@ namespace TechSupport.UserControls
 
         private void UserInputChanged(object sender, EventArgs e)
         {
-            this.HideSuccessMessage();
             HideErrorMessage();
+        }
+
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            this.ClearForm();
+        }
+
+        private void ClearForm()
+        {
+            this.FillCustomerComboBox();
+            this.FillProductComboBox();
+            this.titleTextBox.Clear();
+            this.descriptionTextBox.Clear();
+            this.HideErrorMessage();
+        }
+
+        private void DescriptionTextBox_VisibleChanged(object sender, EventArgs e)
+        {
+            this.ClearForm();
+        }
+
+        private void HideSuccesMessageAction(object ender, EventArgs e)
+        {
+            this.HideSuccessMessage();
         }
         #endregion
 
