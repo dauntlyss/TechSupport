@@ -33,9 +33,10 @@ namespace TechSupport.View
             {
                 var customerID = int.Parse(this.customerIDTextBox.Text);
                 var title = this.titleTextBox.Text;
+                var productCode = "";
                 var description = this.descriptionTextBox.Text;
 
-                this._incidentController.Add(new Model.Incident(customerID, title, description));
+                this._incidentController.Add(new Model.Incident(customerID, productCode, title, description));
 
                 this.DialogResult = DialogResult.OK;
             }
