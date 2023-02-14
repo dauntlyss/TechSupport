@@ -39,7 +39,7 @@ namespace TechSupport.Controller
             {
                 throw new ArgumentNullException("Incident cannot be null.");
             }
-            this._incidentSource.Add(incident);
+            this._incidentDBSource.AddIncident(incident);
         }
 
         /// <summary>
