@@ -79,7 +79,7 @@ namespace TechSupport.UserControls
                 {
                     this.ShowInvalidErrorMessage();
                 }
-                Incident newIncident = new Incident(customerIDSelected, productCodeSelected, title, description);
+                Incident newIncident = new Incident(null, customerIDSelected, productCodeSelected, null, DateTime.Now, null, title, description);
                 this._incidentController.Add(newIncident);
                 this.ShowSuccessMessage();
                 this.ClearForm();
