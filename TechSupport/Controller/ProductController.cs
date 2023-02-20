@@ -41,6 +41,20 @@ namespace TechSupport.Controller
             return _productDBSource.GetAllProductCodeAndNames();
         }
 
+        /// <summary>
+        /// This method gets a product by ProductCode
+        /// </summary>
+        /// <param name="productCode">product code</param>
+        /// <returns>A list of product objects</returns>
+        public List<Product> GetProduct(string productCode)
+        {
+            if (string.IsNullOrEmpty(productCode))
+            {
+                throw new ArgumentNullException("ProductCode cannot be null or empty");
+            }
+            return _productDBSource.GetProduct(productCode);
+        }
+
         #endregion
     }
 }
