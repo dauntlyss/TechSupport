@@ -52,6 +52,48 @@ namespace TechSupport.DAL
             }
             return productList;
         }
+
+        /// <summary>
+        /// This method connects to the database and runs a query to return product by productCode
+        /// </summary>
+        /// <param name="productCode">product code</param>
+        /// <returns>A single product object in list</returns>
+        public List<Product> GetProduct(string productCode)
+        {
+            List<Product> productList = new List<Product>();
+
+            string selectStatement =
+                "SELECT * " +
+                "FROM Products " +
+                "WHERE " +
+                "ProductCode = @productCode";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@productCode", System.Data.SqlDbType.VarChar);
+                    selectCommand.Parameters["@productCode"].Value = productCode;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Product product = new Product
+                            {
+                                ProductCode = reader["ProductCode"].ToString(),
+                                Name = reader["Name"].ToString(),
+                                Version = (Decimal)reader["Version"],
+                                ReleaseDate = (DateTime)reader["ReleaseDate"]
+                            };
+                            productList.Add(product);
+                        }
+                    }
+                }
+            }
+            return productList;
+        }
         #endregion
     }
 }
