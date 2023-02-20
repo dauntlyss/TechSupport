@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using TechSupport.Model;
 
@@ -54,6 +55,52 @@ namespace TechSupport.DAL
         }
 
         /// <summary>
+        /// This method connects database and runs a query to return incident by incidentID
+        /// </summary>
+        /// <param name="incidentID">incident id</param>
+        /// <returns>A single incident object in list</returns>
+        public List<Incident> GetIncident(int incidentID)
+        {
+            List<Incident> incidentList = new List<Incident>();
+
+            string selectStatement =
+                "SELECT * " +
+                "FROM Incidents " +
+                "WHERE " +
+                "IncidentID = @incidentID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                {
+                    selectCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                    selectCommand.Parameters["@incidentID"].Value = incidentID;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Incident incident = new Incident
+                            {
+                                IncidentID = (int)reader["IncidentID"],
+                                CustomerId = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                TechID = reader["TechID"] as int? ?? default,
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                DateClosed = reader["DateClosed"] as DateTime? ?? default,
+                                Title = reader["Title"].ToString(),
+                                Description = reader["Description"].ToString()
+                            };
+                            incidentList.Add(incident);
+                        }
+                    }
+                }
+            }
+            return incidentList;
+        }
+
+        /// <summary>
         /// This method connects to the database and runs a query to return search incidents by customerID
         /// </summary>
         /// <param name="customerID">customer id</param>
@@ -86,7 +133,12 @@ namespace TechSupport.DAL
                         while (reader.Read())
                         {
                             Incident incident = new Incident
-                            ((int)reader["CustomerID"], reader["ProductCode"].ToString(), reader["Title"].ToString(), reader["Description"].ToString());
+                            {
+                                CustomerId = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                Title = reader["Title"].ToString(),
+                                Description = reader["Description"].ToString()
+                            };
                             searchIncidentList.Add(incident);
                         }
                     }
@@ -122,8 +174,13 @@ namespace TechSupport.DAL
                     {
                         while (reader.Read())
                         {
-                            Incident incident = new Incident((int)reader["CustomerID"], reader["ProductCode"].ToString(), reader["Title"].ToString(), reader["Description"].ToString());
-                        
+                            Incident incident = new Incident
+                            {
+                                CustomerId = (int)reader["CustomerID"],
+                                ProductCode = reader["ProductCode"].ToString(),
+                                Title = reader["Title"].ToString(),
+                                Description = reader["Description"].ToString()
+                            };
                             allIncidentList.Add(incident);
                         }
                     }
@@ -192,6 +249,71 @@ namespace TechSupport.DAL
                 throw;
             }
             return openIncidentList;
+        }
+
+        /// <summary>
+        /// This method connects to the database and runs a query to update incident to closed status
+        /// </summary>
+        /// <param name="incidentID"> The incident id</param>
+        public void CloseIncident(int incidentID)
+        {
+            string updateStatement =
+                "UPDATE Incidents SET " +
+                "DateClosed = @time " +
+                "WHERE IncidentID = @incidentID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+                    updateCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@incidentID"].Value = incidentID;
+                    updateCommand.Parameters.Add("@time", System.Data.SqlDbType.Date);
+                    updateCommand.Parameters["@time"].Value = DateTime.Now;
+                    updateCommand.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>
+        /// This method connects to the database and runs a query to update specific fields of the incident
+        /// </summary>
+        /// <param name="incident">incident object</param>
+        public void UpdateIncident(Incident incident)
+        {
+            string updateStatement =
+                "UPDATE Incidents SET " +
+                "TechID = @techID " +
+                ", Description = @description " +
+                "WHERE IncidentID = @incidentID";
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
+                {
+                    updateCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@incidentID"].Value = incident.IncidentID;
+                    updateCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@description"].Value = incident.Description;
+
+                    if (incident.TechID == null || incident.TechID == 0)
+                    {
+                        updateCommand.Parameters.Add("@techID", SqlDbType.VarChar);
+                        updateCommand.Parameters["@techID"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@techID", System.Data.SqlDbType.Int);
+                        updateCommand.Parameters["@techID"].Value = incident.TechID;
+                    }
+
+                    updateCommand.ExecuteNonQuery();
+                }
+            }
         }
 
         #endregion
