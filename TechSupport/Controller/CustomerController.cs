@@ -41,6 +41,20 @@ namespace TechSupport.Controller
             return _customerDBSource.GetAllCustomerIdAndNames();
         }
 
+        /// <summary>
+        /// This method retrievees a customer based on customer Id
+        /// </summary>
+        /// <param name="customerID">customer id</param>
+        /// <returns>list of customer objects</returns>
+        public List<Customer> GetCustomer(int customerID)
+        {
+            if (customerID < 1)
+            {
+                throw new ArgumentException("CustomerID cannot be less than 1");
+            }
+            return _customerDBSource.GetCustomer(customerID);
+        }
+
         #endregion
     }
 }
