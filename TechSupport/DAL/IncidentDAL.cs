@@ -9,16 +9,12 @@ namespace TechSupport.DAL
     /// </summary>
     public class IncidentDAL
     {
-        private static List<Incident> _incidents = new List<Incident>
-        {
-            new Incident(5489, "DRAFT10", "Issue Logging In", "When I try to log in, it give me and invalid error."),
-            new Incident(3295, "DRAFT10", "Need to change password", "My password is my ex-husbands name and I need to change it."),
-            new Incident(2300, "DRAFT10", "Help Changing Username", "I need to change my username so I can build a brand."),
-            new Incident(1689, "DRAFT10", "App is slow", "When I use the app it is slow, speed it up.")
-        };
+        #region Data Members
+        private static List<Incident> _incidents = new List<Incident>();
 
-        private List<Incident> _searchResults = new List<Incident>();
+        #endregion
 
+        #region Methods
         /// <summary>
         /// Gets all incidents.
         /// </summary>
@@ -32,10 +28,10 @@ namespace TechSupport.DAL
         /// Gets all search results.
         /// </summary>
         /// <returns>List of all search results</returns>
-        public List<Incident> GetAllSearchResults()
+        /*public List<Incident> GetAllSearchResults()
         {
             return _searchResults;
-        }
+        }*/
 
         /// <summary>
         /// Adds the specified incident.
@@ -56,22 +52,15 @@ namespace TechSupport.DAL
         /// </summary>
         /// <param name="customerId"></param>
         /// <exception cref="ArgumentNullException"></exception>
-        public void Search(int customerId)
+        public List<Incident> Search(int customerId)
         {
-            _searchResults.Clear();
             if (customerId < 0)
             {
                 throw new ArgumentNullException("CustomerId cannot be less than 0");
             }
 
-            foreach (var incident in _incidents)
-            {
-                if (incident.CustomerId == customerId)
-                {
-                    _searchResults.Add(incident);
-                }
-            }
+            return _incidents.FindAll(item => item.CustomerId == customerId);
         }
-
+        #endregion
     }
 }
