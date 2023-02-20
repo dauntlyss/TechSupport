@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TechSupport.Model
 {
@@ -7,10 +8,22 @@ namespace TechSupport.Model
     /// </summary>
     public class Incident
     {
+        #region Data Members
+
+        /// <summary>
+        /// Gets the incident's IncidentID
+        /// </summary>
+        public int? IncidentID { get; set; }
+
         /// <summary>
         /// Gets the customer identifier of the incident.
         /// </summary>
-        public int CustomerId { get; }
+        public int CustomerId { get; set; }
+
+        /// <summary>
+        /// Gets the incident's TechID
+        /// </summary>
+        public int? TechID { get; set; }
 
         /// <summary>
         /// Gets the incident's ProductCode.
@@ -20,13 +33,26 @@ namespace TechSupport.Model
         /// <summary>
         /// Gets the title of the incident.
         /// </summary>
-        public string Title { get; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Gets the description of the incident.
         /// </summary>
-        public string Description { get; }
+        public string Description { get; set; }
 
+        /// <summary>
+        /// Gets incident's DateOpened
+        /// </summary>
+        public DateTime DateOpened { get; set; }
+
+        /// <summary>
+        /// Gets incident's DateClosed
+        /// </summary>
+        public DateTime? DateClosed { get; set; }
+
+        #endregion
+
+        #region Constructors
         /// <summary>
         /// The default constructor for the object
         /// </summary>
@@ -37,44 +63,74 @@ namespace TechSupport.Model
         /// <summary>
         /// Initializes a new instance of the Incident class.
         /// </summary>
-        /// <param name="customerId">The customer identifier.</param>
-        /// <param name="productCode">incident product code</param>
-        /// <param name="title">The title.</param>
-        /// <param name="description">The description.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">customerId - Customer ID for the incident must be greater than 0.</exception>
-        /// <exception cref="System.ArgumentException">
-        /// The title of the incident cannot be empty or exceed 100 characters. - title
-        /// or
-        /// The description of the incident cannot be empty or greater than 300 characters. - description
-        /// </exception>
-        public Incident(int customerId, string productCode, string title, string description)
+        /// <param name="incidentID">Incident ID</param>
+        /// <param name="customerID">Customer ID</param>
+        /// <param name="productCode">Product Code</param>
+        /// <param name="techID">Technician ID</param>
+        /// <param name="dateOpened">Date Opened</param>
+        /// <param name="dateClosed">Date Closed</param>
+        /// <param name="title">Title</param>
+        /// <param name="description">Description</param>
+        public Incident(int? incidentID, int customerID, string productCode, int? techID
+            , DateTime dateOpened, DateTime? dateClosed, string title, string description)
         {
-            if (customerId < 0)
+            if (incidentID != null && incidentID < 0)
             {
-                throw new ArgumentOutOfRangeException("customerId",
-                    "Customer ID for the incident must be greater than 0.");
+                throw new ArgumentOutOfRangeException("incidentID", "Incident's IncidentID must be a number greater than 0.");
+
             }
 
-            if (string.IsNullOrEmpty(productCode) || productCode.Length > 20)
+            if (customerID < 0)
             {
-                throw new ArgumentException("Incident's Product Code cannot be empty or exceed 20 characters.", "productCode");
+                throw new ArgumentOutOfRangeException("customerID", "Incident's CustomerID must be a number greater than 0.");
+
             }
 
-            if (string.IsNullOrEmpty(title) || title.Length > 100)
+            if (string.IsNullOrEmpty(productCode) || productCode.Length > 10)
             {
-                throw new ArgumentException("The title of the incident cannot be empty or exceed 100 characters.",
-                    "title");
+                throw new ArgumentException("Incident's Product Code cannot be null/empty or greater than 10 characters.", "productCode");
+
             }
 
-            if (string.IsNullOrEmpty(description) || description.Length > 300)
+            if (techID != null && techID < 0)
             {
-                throw new ArgumentException("The description of the incident cannot be empty or greater than 300 characters.", "description");
+                throw new ArgumentOutOfRangeException("techID", "Incident's TechID must be a number greater than 0.");
+
             }
 
-            this.CustomerId = customerId;
-            this.ProductCode= productCode;
+            if (!DateTime.TryParse(dateOpened.ToString(), out _))
+            {
+                throw new ArgumentException("Incident's Date Opened is not valid.", "dateOpened");
+
+            }
+
+            if (dateClosed != null && !DateTime.TryParse(dateClosed.ToString(), out _))
+            {
+                throw new ArgumentException("Incident's Date Closed is not valid.", "dateClosed");
+
+            }
+
+            if (string.IsNullOrEmpty(title) || title.Length > 50)
+            {
+                throw new ArgumentException("Incident's Title cannot be null/empty or greater than 50 characters.", "title");
+
+            }
+
+            if (string.IsNullOrEmpty(description) || description.Length > 200)
+            {
+                throw new ArgumentException("Incident's description cannot be null/empty or greater than 200 characters.", "description");
+
+            }
+
+            this.IncidentID = incidentID;
+            this.CustomerId = customerID;
+            this.ProductCode = productCode;
+            this.TechID = techID;
+            this.DateOpened = dateOpened;
+            this.DateClosed = dateClosed;
             this.Title = title;
             this.Description = description;
         }
+        #endregion
     }
 }
