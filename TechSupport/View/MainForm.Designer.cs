@@ -77,7 +77,6 @@
             this.searchIncidentButton.TabIndex = 3;
             this.searchIncidentButton.Text = "Search Incident";
             this.searchIncidentButton.UseVisualStyleBackColor = true;
-            this.searchIncidentButton.Click += new System.EventHandler(this.SearchIncidentButton_Click);
             // 
             // incidentDataGridView
             // 

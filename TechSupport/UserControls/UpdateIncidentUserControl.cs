@@ -247,27 +247,27 @@ namespace TechSupport.UserControls
                 }
                 else if (_pullIncidentID != incidentID)
                 {
-                    errorMessage = "IncidentID has changed, so new entry cannot update";
+                    errorMessage = "IncidentID has changed, so new entry cannot update.";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (IsIncidentClosed(incidentID))
                 {
-                    errorMessage = "Incident was closed by another user";
+                    errorMessage = "Incident was closed by another user.";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (HasDescriptionChanged(incidentID))
                 {
-                    errorMessage = "Description has changed, so new entry cannot update";
+                    errorMessage = "Description has changed, so new entry cannot update.";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (_pullIncidentID == incidentID && addTextEntered.Length == 0 && _pullTechID == technicianSelected)
                 {
-                    errorMessage = "Cannot update as no changes made";
+                    errorMessage = "No changes were made; no update recorded.";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (_pullIncidentID == incidentID && _pullDescription.Length >= 200 && addTextEntered.Length > 0)
                 {
-                    errorMessage = "Description cannot accept any more text";
+                    errorMessage = "Description cannot accept any more text.";
                     this.ShowInvalidErrorMessage(errorMessage);
                 }
                 else if (_pullIncidentID == incidentID && (addTextEntered.Length > 0 || _pullTechID != technicianSelected))
@@ -306,20 +306,20 @@ namespace TechSupport.UserControls
                     if (result == DialogResult.Yes)
                     {
                         Incident newIncident = CreateUpdateIncident(techID, concatAddText.Substring(0, truncatedConcatAddTextLength));
-                        successMessage = "Updated description with added truncated message";
+                        successMessage = "Updated description with added truncated message!";
                         this.ProcessUpdate(newIncident, successMessage);
                     }
                 }
                 else if (newDescriptionLength <= 200 && concatAddText.Length > 0)
                 {
                     Incident newIncident = CreateUpdateIncident(techID, concatAddText);
-                    successMessage = "Updated description with added message";
+                    successMessage = "Updated description with added message!";
                     this.ProcessUpdate(newIncident, successMessage);
                 }
                 else if (_pullTechID != techID)
                 {
                     Incident newIncident = CreateUpdateIncident(techID, concatAddText);
-                    successMessage = "Updated technician";
+                    successMessage = "Updated technician!";
                     this.ProcessUpdate(newIncident, successMessage);
                 }
             }
@@ -386,12 +386,12 @@ namespace TechSupport.UserControls
                     else if (IsIncidentClosed(incidentID))
                     {
                         GetIncident();
-                        errorMessage = "Incident was closed by another user";
+                        errorMessage = "Incident was closed by another user.";
                         this.ShowInvalidErrorMessage(errorMessage);
                     }
                     else if (GetTechnicianList()[technicianIndexSelected].TechID == 0)
                     {
-                        errorMessage = "Cannot close incident without assigning technician";
+                        errorMessage = "Cannot close incident without assigning technician.";
                         this.ShowInvalidErrorMessage(errorMessage);
                     }
                     else

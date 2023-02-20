@@ -67,12 +67,5 @@ namespace TechSupport.View
             }
         }
 
-        private void SearchIncidentButton_Click(object sender, EventArgs e)
-        {
-            using (Form searchIncidentDialog = new SearchIncidentDialog())
-            {
-                DialogResult result = searchIncidentDialog.ShowDialog();
-            }
-        }
     }
 }

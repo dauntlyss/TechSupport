@@ -14,7 +14,6 @@ namespace TechSupport.Controller
     {
 
         private readonly IncidentDBDAL _incidentDBSource;
-        private readonly IncidentDAL _incidentSource;
 
         ///Creates an incidentController object to add incidents
         public IncidentController()
@@ -120,33 +119,6 @@ namespace TechSupport.Controller
                 throw new ArgumentException("IncidentID cannot be less than 1.");
             }
             _incidentDBSource.CloseIncident(incidentID);
-        }
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Searches incidents by customer ID
-        /// </summary>
-        /// <param name="customerID"></param>
-        /// <exception cref="ArgumentNullException"></exception>
-        public void Search(int customerID)
-        {
-            if (customerID < 0)
-            {
-                throw new ArgumentNullException("Customer ID must be greater than 0.");
-            }
-            this._incidentSource.Search(customerID);
-        }
-
-        public List<Incident> GetSearchIncidents()
-        {
-            int customerID = 5;
-            return this._incidentSource.Search(customerID);
         }
 
     }

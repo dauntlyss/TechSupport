@@ -25,15 +25,6 @@ namespace TechSupport.DAL
         }
 
         /// <summary>
-        /// Gets all search results.
-        /// </summary>
-        /// <returns>List of all search results</returns>
-        /*public List<Incident> GetAllSearchResults()
-        {
-            return _searchResults;
-        }*/
-
-        /// <summary>
         /// Adds the specified incident.
         /// </summary>
         /// <param name="incident">The incident.</param>

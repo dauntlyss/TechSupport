@@ -156,6 +156,7 @@
             this.customerComboBox.Size = new System.Drawing.Size(299, 21);
             this.customerComboBox.TabIndex = 27;
             this.customerComboBox.DropDown += new System.EventHandler(this.HideSuccesMessageAction);
+            this.customerComboBox.DropDownClosed += new System.EventHandler(this.UserInputChanged);
             // 
             // productComboBox
             // 
@@ -165,6 +166,7 @@
             this.productComboBox.Size = new System.Drawing.Size(299, 21);
             this.productComboBox.TabIndex = 28;
             this.productComboBox.DropDown += new System.EventHandler(this.HideSuccesMessageAction);
+            this.productComboBox.DropDownClosed += new System.EventHandler(this.UserInputChanged);
             // 
             // productLabel
             // 

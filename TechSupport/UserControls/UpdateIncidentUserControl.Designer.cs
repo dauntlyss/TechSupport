@@ -249,7 +249,7 @@
             // 
             this.successMessageLabel.AutoSize = true;
             this.successMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.successMessageLabel.Location = new System.Drawing.Point(196, 458);
+            this.successMessageLabel.Location = new System.Drawing.Point(176, 456);
             this.successMessageLabel.Name = "successMessageLabel";
             this.successMessageLabel.Size = new System.Drawing.Size(0, 16);
             this.successMessageLabel.TabIndex = 21;
