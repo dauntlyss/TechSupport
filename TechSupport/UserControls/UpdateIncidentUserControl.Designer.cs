@@ -48,6 +48,8 @@
             this.productTextBox = new System.Windows.Forms.TextBox();
             this.customerTextBox = new System.Windows.Forms.TextBox();
             this.incidentIDTextBox = new System.Windows.Forms.TextBox();
+            this.errorMessageLabel = new System.Windows.Forms.Label();
+            this.successMessageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // getIncidentIDButton
@@ -59,6 +61,7 @@
             this.getIncidentIDButton.TabIndex = 0;
             this.getIncidentIDButton.Text = "Get";
             this.getIncidentIDButton.UseVisualStyleBackColor = true;
+            this.getIncidentIDButton.Click += new System.EventHandler(this.GetIncidentIDButton_Click);
             // 
             // incidentIDLabel
             // 
@@ -157,6 +160,7 @@
             this.updateButton.TabIndex = 10;
             this.updateButton.Text = "Update";
             this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // closeButton
             // 
@@ -167,6 +171,7 @@
             this.closeButton.TabIndex = 11;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // clearButton
             // 
@@ -177,6 +182,7 @@
             this.clearButton.TabIndex = 12;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // descriptionTextBox
             // 
@@ -228,12 +234,33 @@
             this.incidentIDTextBox.Name = "incidentIDTextBox";
             this.incidentIDTextBox.Size = new System.Drawing.Size(278, 20);
             this.incidentIDTextBox.TabIndex = 19;
+            this.incidentIDTextBox.VisibleChanged += new System.EventHandler(this.IncidentIDTextBox_VisibleChanged);
+            // 
+            // errorMessageLabel
+            // 
+            this.errorMessageLabel.AutoSize = true;
+            this.errorMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorMessageLabel.Location = new System.Drawing.Point(170, 456);
+            this.errorMessageLabel.Name = "errorMessageLabel";
+            this.errorMessageLabel.Size = new System.Drawing.Size(0, 16);
+            this.errorMessageLabel.TabIndex = 20;
+            // 
+            // successMessageLabel
+            // 
+            this.successMessageLabel.AutoSize = true;
+            this.successMessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.successMessageLabel.Location = new System.Drawing.Point(196, 458);
+            this.successMessageLabel.Name = "successMessageLabel";
+            this.successMessageLabel.Size = new System.Drawing.Size(0, 16);
+            this.successMessageLabel.TabIndex = 21;
             // 
             // UpdateIncidentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.successMessageLabel);
+            this.Controls.Add(this.errorMessageLabel);
             this.Controls.Add(this.incidentIDTextBox);
             this.Controls.Add(this.customerTextBox);
             this.Controls.Add(this.productTextBox);
@@ -256,6 +283,7 @@
             this.Controls.Add(this.getIncidentIDButton);
             this.Name = "UpdateIncidentUserControl";
             this.Size = new System.Drawing.Size(636, 534);
+            this.Load += new System.EventHandler(this.LoadForm);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,5 +311,7 @@
         private System.Windows.Forms.TextBox productTextBox;
         private System.Windows.Forms.TextBox customerTextBox;
         private System.Windows.Forms.TextBox incidentIDTextBox;
+        private System.Windows.Forms.Label errorMessageLabel;
+        private System.Windows.Forms.Label successMessageLabel;
     }
 }
