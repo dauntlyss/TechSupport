@@ -189,7 +189,8 @@ namespace TechSupport.UserControls
         private string GetCustomerName(int customerID)
         {
             string customerName = "";
-            List<Customer> customerList = _customerController.GetCustomer(customerID);
+            /*List<Customer> customerList = _customerController.GetCustomer(customerID);*/
+            List<Customer> customerList = _customerController.GetAllCustomers();
             if (customerList.Count > 0)
             {
                 customerName = customerList[0].Name;

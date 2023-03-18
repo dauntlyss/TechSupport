@@ -28,7 +28,7 @@ namespace TechSupport.DAL
             return ProcessList(selectStatement);
         }
 
-        private static List<Registration> ProcessList(string sql)
+        private List<Registration> ProcessList(string sql)
         {
             List<Registration> registrationList = new List<Registration>();
             string selectStatement = sql;

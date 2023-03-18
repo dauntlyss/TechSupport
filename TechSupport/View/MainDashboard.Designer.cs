@@ -37,6 +37,7 @@
             this.addIncidentTabPage = new System.Windows.Forms.TabPage();
             this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.mainDashboardTabControl = new System.Windows.Forms.TabControl();
+            this.viewIncidentsByTechnicianTabPage = new System.Windows.Forms.TabPage();
             this.updateIncidentTabPage.SuspendLayout();
             this.openIncidentsTabPage.SuspendLayout();
             this.addIncidentTabPage.SuspendLayout();
@@ -122,12 +123,23 @@
             this.mainDashboardTabControl.Controls.Add(this.addIncidentTabPage);
             this.mainDashboardTabControl.Controls.Add(this.openIncidentsTabPage);
             this.mainDashboardTabControl.Controls.Add(this.updateIncidentTabPage);
+            this.mainDashboardTabControl.Controls.Add(this.viewIncidentsByTechnicianTabPage);
             this.mainDashboardTabControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.mainDashboardTabControl.Location = new System.Drawing.Point(0, 41);
             this.mainDashboardTabControl.Name = "mainDashboardTabControl";
             this.mainDashboardTabControl.SelectedIndex = 0;
             this.mainDashboardTabControl.Size = new System.Drawing.Size(800, 565);
             this.mainDashboardTabControl.TabIndex = 0;
+            // 
+            // viewIncidentsByTechnicianTabPage
+            // 
+            this.viewIncidentsByTechnicianTabPage.Location = new System.Drawing.Point(4, 22);
+            this.viewIncidentsByTechnicianTabPage.Name = "viewIncidentsByTechnicianTabPage";
+            this.viewIncidentsByTechnicianTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.viewIncidentsByTechnicianTabPage.Size = new System.Drawing.Size(792, 539);
+            this.viewIncidentsByTechnicianTabPage.TabIndex = 5;
+            this.viewIncidentsByTechnicianTabPage.Text = "View Incidents by Technician";
+            this.viewIncidentsByTechnicianTabPage.UseVisualStyleBackColor = true;
             // 
             // MainDashboard
             // 
@@ -159,5 +171,6 @@
         private System.Windows.Forms.TabPage addIncidentTabPage;
         private UserControls.AddIncidentUserControl addIncidentUserControl1;
         private System.Windows.Forms.TabControl mainDashboardTabControl;
+        private System.Windows.Forms.TabPage viewIncidentsByTechnicianTabPage;
     }
 }

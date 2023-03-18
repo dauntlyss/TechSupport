@@ -27,7 +27,7 @@ namespace TechSupport.DAL
             return ProcessCodeAndNameList(selectStatement);
         }
 
-        private static List<ProductCodeAndName> ProcessCodeAndNameList(string sql)
+        private List<ProductCodeAndName> ProcessCodeAndNameList(string sql)
         {
             List<ProductCodeAndName> productList = new List<ProductCodeAndName>();
             string selectStatement = sql;

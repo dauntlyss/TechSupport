@@ -51,9 +51,12 @@ namespace TechSupport.UserControls
             return products;
         }
 
-        private List<CustomerIdAndName> FillCustomerComboBox()
+        private List<Customer> FillCustomerComboBox()
         {
-            List<CustomerIdAndName> customers = _customerController.GetAllCustomerIDAndNames();
+            /*customerComboBox.Items.Clear();
+            customerComboBox.Items.AddRange((new CustomerController()).GetAllCustomers().ToArray());
+            customerComboBox.SelectedIndex = 0;*/
+            List<Customer> customers = _customerController.GetAllCustomers();
             customerComboBox.DataSource = customers;
             customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             customerComboBox.DisplayMember = "Name";

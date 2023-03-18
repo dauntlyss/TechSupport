@@ -12,7 +12,23 @@ namespace TechSupport.Controller
     /// </summary>
     public class CustomerController
     {
-        #region Data Members
+        private readonly CustomerDBDAL _customerDBSource;
+
+        ///Creates an incidentController object to add incidents
+        public CustomerController()
+        {
+            this._customerDBSource = new CustomerDBDAL();
+        }
+
+        /// <summary>
+        /// Delegates retrieving all Customers to CustomerDAL.
+        /// </summary>
+        /// <returns>All Customers in TechSupport database.</returns>
+        public List<Customer> GetAllCustomers()
+        {
+            return _customerDBSource.GetAllCustomers();
+        }
+        /*#region Data Members
 
         private readonly CustomerDBDAL _customerDBSource;
 
@@ -55,6 +71,6 @@ namespace TechSupport.Controller
             return _customerDBSource.GetCustomer(customerID);
         }
 
-        #endregion
+        #endregion*/
     }
 }

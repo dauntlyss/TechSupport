@@ -62,7 +62,7 @@ namespace TechSupport.Controller
         /// <summary>
         /// Gets all the incidents with a specific customer ID
         /// </summary>
-        /// <returns></returns>
+        /// <returns>All search incidents </returns>
         public List<Incident> GetSearchIncidents(int customerID)
         {
             return this._incidentDBSource.GetSearchIncidents(customerID);
