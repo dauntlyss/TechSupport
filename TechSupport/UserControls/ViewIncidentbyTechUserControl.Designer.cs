@@ -35,7 +35,6 @@
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.incidentsDataGridView = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.incidentsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +53,7 @@
             this.nameComboBox.FormattingEnabled = true;
             this.nameComboBox.Location = new System.Drawing.Point(111, 37);
             this.nameComboBox.Name = "nameComboBox";
-            this.nameComboBox.Size = new System.Drawing.Size(405, 21);
+            this.nameComboBox.Size = new System.Drawing.Size(519, 21);
             this.nameComboBox.TabIndex = 1;
             // 
             // emailLabel
@@ -81,14 +80,14 @@
             // 
             this.emailTextBox.Location = new System.Drawing.Point(111, 74);
             this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(405, 20);
+            this.emailTextBox.Size = new System.Drawing.Size(519, 20);
             this.emailTextBox.TabIndex = 4;
             // 
             // phoneTextBox
             // 
             this.phoneTextBox.Location = new System.Drawing.Point(111, 112);
             this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.Size = new System.Drawing.Size(219, 20);
+            this.phoneTextBox.Size = new System.Drawing.Size(297, 20);
             this.phoneTextBox.TabIndex = 5;
             // 
             // incidentsDataGridView
@@ -96,22 +95,13 @@
             this.incidentsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.incidentsDataGridView.Location = new System.Drawing.Point(28, 164);
             this.incidentsDataGridView.Name = "incidentsDataGridView";
-            this.incidentsDataGridView.Size = new System.Drawing.Size(608, 216);
+            this.incidentsDataGridView.Size = new System.Drawing.Size(697, 321);
             this.incidentsDataGridView.TabIndex = 6;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(372, 111);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 7;
             // 
             // ViewIncidentbyTechUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.incidentsDataGridView);
             this.Controls.Add(this.phoneTextBox);
             this.Controls.Add(this.emailTextBox);
@@ -120,7 +110,7 @@
             this.Controls.Add(this.nameComboBox);
             this.Controls.Add(this.nameLabel);
             this.Name = "ViewIncidentbyTechUserControl";
-            this.Size = new System.Drawing.Size(669, 403);
+            this.Size = new System.Drawing.Size(766, 511);
             ((System.ComponentModel.ISupportInitialize)(this.incidentsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -136,6 +126,5 @@
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.DataGridView incidentsDataGridView;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
