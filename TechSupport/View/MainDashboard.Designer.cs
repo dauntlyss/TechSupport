@@ -31,17 +31,19 @@
             this.logoutLinkLabel = new System.Windows.Forms.LinkLabel();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.updateIncidentTabPage = new System.Windows.Forms.TabPage();
-            this.updateIncidentUserControl1 = new TechSupport.UserControls.UpdateIncidentUserControl();
             this.openIncidentsTabPage = new System.Windows.Forms.TabPage();
-            this.displayOpenIncidentUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentUserControl();
             this.addIncidentTabPage = new System.Windows.Forms.TabPage();
-            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
             this.mainDashboardTabControl = new System.Windows.Forms.TabControl();
             this.viewIncidentsByTechnicianTabPage = new System.Windows.Forms.TabPage();
+            this.addIncidentUserControl1 = new TechSupport.UserControls.AddIncidentUserControl();
+            this.displayOpenIncidentUserControl1 = new TechSupport.UserControls.DisplayOpenIncidentUserControl();
+            this.updateIncidentUserControl1 = new TechSupport.UserControls.UpdateIncidentUserControl();
+            this.viewIncidentbyTechUserControl1 = new TechSupport.UserControls.ViewIncidentbyTechUserControl();
             this.updateIncidentTabPage.SuspendLayout();
             this.openIncidentsTabPage.SuspendLayout();
             this.addIncidentTabPage.SuspendLayout();
             this.mainDashboardTabControl.SuspendLayout();
+            this.viewIncidentsByTechnicianTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // logoutLinkLabel
@@ -74,14 +76,6 @@
             this.updateIncidentTabPage.Text = "Update Incident";
             this.updateIncidentTabPage.UseVisualStyleBackColor = true;
             // 
-            // updateIncidentUserControl1
-            // 
-            this.updateIncidentUserControl1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.updateIncidentUserControl1.Location = new System.Drawing.Point(92, 6);
-            this.updateIncidentUserControl1.Name = "updateIncidentUserControl1";
-            this.updateIncidentUserControl1.Size = new System.Drawing.Size(636, 528);
-            this.updateIncidentUserControl1.TabIndex = 0;
-            // 
             // openIncidentsTabPage
             // 
             this.openIncidentsTabPage.Controls.Add(this.displayOpenIncidentUserControl1);
@@ -93,13 +87,6 @@
             this.openIncidentsTabPage.Text = "Display Open Incidents";
             this.openIncidentsTabPage.UseVisualStyleBackColor = true;
             // 
-            // displayOpenIncidentUserControl1
-            // 
-            this.displayOpenIncidentUserControl1.Location = new System.Drawing.Point(5, 10);
-            this.displayOpenIncidentUserControl1.Name = "displayOpenIncidentUserControl1";
-            this.displayOpenIncidentUserControl1.Size = new System.Drawing.Size(781, 529);
-            this.displayOpenIncidentUserControl1.TabIndex = 0;
-            // 
             // addIncidentTabPage
             // 
             this.addIncidentTabPage.Controls.Add(this.addIncidentUserControl1);
@@ -110,13 +97,6 @@
             this.addIncidentTabPage.TabIndex = 0;
             this.addIncidentTabPage.Text = "Add Incident";
             this.addIncidentTabPage.UseVisualStyleBackColor = true;
-            // 
-            // addIncidentUserControl1
-            // 
-            this.addIncidentUserControl1.Location = new System.Drawing.Point(3, 61);
-            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
-            this.addIncidentUserControl1.Size = new System.Drawing.Size(789, 419);
-            this.addIncidentUserControl1.TabIndex = 0;
             // 
             // mainDashboardTabControl
             // 
@@ -133,6 +113,7 @@
             // 
             // viewIncidentsByTechnicianTabPage
             // 
+            this.viewIncidentsByTechnicianTabPage.Controls.Add(this.viewIncidentbyTechUserControl1);
             this.viewIncidentsByTechnicianTabPage.Location = new System.Drawing.Point(4, 22);
             this.viewIncidentsByTechnicianTabPage.Name = "viewIncidentsByTechnicianTabPage";
             this.viewIncidentsByTechnicianTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -140,6 +121,35 @@
             this.viewIncidentsByTechnicianTabPage.TabIndex = 5;
             this.viewIncidentsByTechnicianTabPage.Text = "View Incidents by Technician";
             this.viewIncidentsByTechnicianTabPage.UseVisualStyleBackColor = true;
+            // 
+            // addIncidentUserControl1
+            // 
+            this.addIncidentUserControl1.Location = new System.Drawing.Point(3, 61);
+            this.addIncidentUserControl1.Name = "addIncidentUserControl1";
+            this.addIncidentUserControl1.Size = new System.Drawing.Size(789, 419);
+            this.addIncidentUserControl1.TabIndex = 0;
+            // 
+            // displayOpenIncidentUserControl1
+            // 
+            this.displayOpenIncidentUserControl1.Location = new System.Drawing.Point(5, 10);
+            this.displayOpenIncidentUserControl1.Name = "displayOpenIncidentUserControl1";
+            this.displayOpenIncidentUserControl1.Size = new System.Drawing.Size(781, 529);
+            this.displayOpenIncidentUserControl1.TabIndex = 0;
+            // 
+            // updateIncidentUserControl1
+            // 
+            this.updateIncidentUserControl1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.updateIncidentUserControl1.Location = new System.Drawing.Point(92, 6);
+            this.updateIncidentUserControl1.Name = "updateIncidentUserControl1";
+            this.updateIncidentUserControl1.Size = new System.Drawing.Size(636, 528);
+            this.updateIncidentUserControl1.TabIndex = 0;
+            // 
+            // viewIncidentbyTechUserControl1
+            // 
+            this.viewIncidentbyTechUserControl1.Location = new System.Drawing.Point(18, 6);
+            this.viewIncidentbyTechUserControl1.Name = "viewIncidentbyTechUserControl1";
+            this.viewIncidentbyTechUserControl1.Size = new System.Drawing.Size(766, 511);
+            this.viewIncidentbyTechUserControl1.TabIndex = 0;
             // 
             // MainDashboard
             // 
@@ -156,6 +166,7 @@
             this.openIncidentsTabPage.ResumeLayout(false);
             this.addIncidentTabPage.ResumeLayout(false);
             this.mainDashboardTabControl.ResumeLayout(false);
+            this.viewIncidentsByTechnicianTabPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,5 +183,6 @@
         private UserControls.AddIncidentUserControl addIncidentUserControl1;
         private System.Windows.Forms.TabControl mainDashboardTabControl;
         private System.Windows.Forms.TabPage viewIncidentsByTechnicianTabPage;
+        private UserControls.ViewIncidentbyTechUserControl viewIncidentbyTechUserControl1;
     }
 }
