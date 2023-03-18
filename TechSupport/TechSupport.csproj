@@ -67,6 +67,7 @@
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCodeAndName.cs" />
     <Compile Include="Model\Registration.cs" />
+    <Compile Include="Model\Technician.cs" />
     <Compile Include="Model\TechnicianIDandName.cs" />
     <Compile Include="UserControls\AddIncidentUserControl.cs">
       <SubType>UserControl</SubType>
