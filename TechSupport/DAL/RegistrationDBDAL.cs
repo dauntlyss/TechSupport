@@ -65,30 +65,36 @@ namespace TechSupport.DAL
         public Boolean IsCustomerProductRegistered(int customerID, string productCode)
         {
             Boolean registered;
-            SqlConnection connection = TechSupportDBConnection.GetConnection();
-            SqlCommand selectCommand = new SqlCommand
+
+            using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
-                Connection = connection,
-                CommandText = "spIsCustomerProductRegistered",
-                CommandType = CommandType.StoredProcedure
-            };
-            selectCommand.Parameters.Add("@CustomerID", SqlDbType.Int);
-            selectCommand.Parameters["@CustomerID"].Value = customerID;
-            selectCommand.Parameters.Add("@ProductCode", SqlDbType.VarChar);
-            selectCommand.Parameters["@ProductCode"].Value = productCode;
-            connection.Open();
-            SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow);
-            if (reader.HasRows)
-            {
-                registered = true;
+                connection.Open();
+
+                using (SqlCommand selectCommand = new SqlCommand
+                {
+                    Connection = connection,
+                    CommandText = "spIsCustomerProductRegistered",
+                    CommandType = CommandType.StoredProcedure
+                })
+                {
+                    selectCommand.Parameters.Add("@CustomerID", SqlDbType.Int);
+                    selectCommand.Parameters["@CustomerID"].Value = customerID;
+                    selectCommand.Parameters.Add("@ProductCode", SqlDbType.VarChar);
+                    selectCommand.Parameters["@ProductCode"].Value = productCode;
+                    using (SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow))
+                    {
+                        if (reader.HasRows)
+                        {
+                            registered = true;
+                        }
+                        else
+                        {
+                            registered = false;
+                        }
+                        return registered;
+                    }
+                }
             }
-            else
-            {
-                registered = false;
-            }
-            reader.Close();
-            connection.Close();
-            return registered;
         }
 
         #endregion

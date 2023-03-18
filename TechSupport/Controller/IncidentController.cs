@@ -81,8 +81,8 @@ namespace TechSupport.Controller
         /// Returns the incident with a specific IncidentID
         /// </summary>
         /// <param name="incidentID">incident id</param>
-        /// <returns>A list of incident objects</returns>
-        public List<Incident> GetIncident(int incidentID)
+        /// <returns>an incident</returns>
+        public Incident GetIncident(int incidentID)
         {
             if (incidentID < 1)
             {
@@ -95,30 +95,52 @@ namespace TechSupport.Controller
         /// Updates specific fields of incident object
         /// </summary>
         /// <param name="incident">incident object</param>
-        public void UpdateIncident(Incident incident)
+        public bool UpdateIncident(Incident formerIncident, Incident newIncident)
         {
-            if (incident.IncidentID < 1)
+            if (formerIncident.IncidentID < 1)
             {
-                throw new ArgumentException("IncidentID cannot be less than 1");
+                throw new ArgumentException("Former Incident cannot be less than 1");
             }
-            if (incident.Description.Length > 200)
+            if (formerIncident.Description.Length > 200)
             {
-                throw new ArgumentException("Description cannot be greater than 200");
+                throw new ArgumentException("Former Incident's description cannot be greater than 200 characters");
             }
-            _incidentDBSource.UpdateIncident(incident);
+            if (newIncident.IncidentID < 1)
+            {
+                throw new ArgumentException("New IncidentID cannot be less than 1");
+            }
+            if (newIncident.Description.Length > 200)
+            {
+                throw new ArgumentException("New Incident's description cannot be greater than 200 characters");
+            }
+             return _incidentDBSource.UpdateIncident(formerIncident, newIncident);
         }
 
         /// <summary>
         /// Closes the incident with a specific IncidentID
         /// </summary>
-        /// <param name="incidentID">incident id</param>
-        public void CloseIncident(int incidentID)
+        /// <param name="formerIncident">old Incident object</param>
+        /// <param name="newIncident">new Incident object</param>
+        /// <returns>boolean if Incident object was closed</returns>
+        public bool CloseIncident(Incident formerIncident, Incident newIncident)
         {
-            if (incidentID < 1)
+            if (formerIncident.IncidentID < 1)
             {
-                throw new ArgumentException("IncidentID cannot be less than 1.");
+                throw new ArgumentException("Former IncidentID cannot be less than 1");
             }
-            _incidentDBSource.CloseIncident(incidentID);
+            if (formerIncident.Description.Length > 200)
+            {
+                throw new ArgumentException("Former Description cannot be greater than 200 characters");
+            }
+            if (newIncident.IncidentID < 1)
+            {
+                throw new ArgumentException("New incident's IncidentID cannot be less than 1");
+            }
+            if (newIncident.Description.Length > 200)
+            {
+                throw new ArgumentException("New incident's Description cannot be greater than 200 characters");
+            }
+            return _incidentDBSource.CloseIncident(formerIncident, newIncident);
         }
 
     }

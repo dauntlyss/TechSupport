@@ -59,9 +59,9 @@ namespace TechSupport.DAL
         /// </summary>
         /// <param name="incidentID">incident id</param>
         /// <returns>A single incident object in list</returns>
-        public List<Incident> GetIncident(int incidentID)
+        public Incident GetIncident(int incidentID)
         {
-            List<Incident> incidentList = new List<Incident>();
+            Incident incident = new Incident();
 
             string selectStatement =
                 "SELECT * " +
@@ -81,23 +81,22 @@ namespace TechSupport.DAL
                     {
                         while (reader.Read())
                         {
-                            Incident incident = new Incident
                             {
-                                IncidentID = (int)reader["IncidentID"],
-                                CustomerId = (int)reader["CustomerID"],
-                                ProductCode = reader["ProductCode"].ToString(),
-                                TechID = reader["TechID"] as int? ?? default,
-                                DateOpened = (DateTime)reader["DateOpened"],
-                                DateClosed = reader["DateClosed"] as DateTime? ?? default,
-                                Title = reader["Title"].ToString(),
-                                Description = reader["Description"].ToString()
+                                incident.IncidentID = (int)reader["IncidentID"];
+                                incident.CustomerId = (int)reader["CustomerID"];
+                                incident.ProductCode = reader["ProductCode"].ToString();
+                                incident.TechID = reader["TechID"] as int? ?? default;
+                                incident.DateOpened = (DateTime)reader["DateOpened"];
+                                incident.DateClosed = reader["DateClosed"] as DateTime? ?? default;
+                                incident.Title = reader["Title"].ToString();
+                                incident.Description = reader["Description"].ToString();
                             };
-                            incidentList.Add(incident);
+                            
                         }
                     }
                 }
             }
-            return incidentList;
+            return incident;
         }
 
         /// <summary>
@@ -254,13 +253,30 @@ namespace TechSupport.DAL
         /// <summary>
         /// This method connects to the database and runs a query to update incident to closed status
         /// </summary>
-        /// <param name="incidentID"> The incident id</param>
-        public void CloseIncident(int incidentID)
+        /// <param name="formerIncident">former Incident object</param>
+        /// <param name="newIncident">new Incident object</param>
+        /// <returns>boolean if incident was closed</returns>
+        public bool CloseIncident(Incident formerIncident, Incident newIncident)
         {
             string updateStatement =
                 "UPDATE Incidents SET " +
-                "DateClosed = @time " +
-                "WHERE IncidentID = @incidentID";
+                "CustomerID = @NewCustomerID " +
+                ", ProductCode = @NewProductCode " +
+                ", TechID = @NewTechID " +
+                ", DateOpened = @NewDateOpened " +
+                ", DateClosed = @NewDateClosed " +
+                ", Title = @NewTitle " +
+                ", Description = @NewDescription " +
+                "WHERE IncidentID = @FormerIncidentID " +
+                "AND CustomerID = @FormerCustomerID " +
+                "AND ProductCode = @FormerProductCode " +
+                "AND (TechID = @FormerTechID " +
+                     "OR TechID IS NULL AND @FormerTechID IS NULL) " +
+                "AND DateOpened = @FormerDateOpened " +
+                "AND (DateClosed = @FormerDateClosed " +
+                     "OR DateClosed IS NULL AND @FormerDateClosed IS NULL) " +
+                "AND Title = @FormerTitle " +
+                "AND Description = @FormerDescription";
 
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
@@ -268,11 +284,81 @@ namespace TechSupport.DAL
 
                 using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
                 {
-                    updateCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
-                    updateCommand.Parameters["@incidentID"].Value = incidentID;
-                    updateCommand.Parameters.Add("@time", System.Data.SqlDbType.Date);
-                    updateCommand.Parameters["@time"].Value = DateTime.Now;
-                    updateCommand.ExecuteNonQuery();
+                    updateCommand.Parameters.Add("@NewCustomerID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@NewCustomerID"].Value = newIncident.CustomerId;
+                    updateCommand.Parameters.Add("@NewProductCode", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@NewProductCode"].Value = newIncident.ProductCode;
+
+                    if (newIncident.TechID == null || newIncident.TechID == 0)
+                    {
+                        updateCommand.Parameters.Add("@NewTechID", SqlDbType.VarChar);
+                        updateCommand.Parameters["@NewTechID"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@NewTechID", System.Data.SqlDbType.Int);
+                        updateCommand.Parameters["@NewTechID"].Value = newIncident.TechID;
+                    }
+
+                    updateCommand.Parameters.Add("@NewDateOpened", System.Data.SqlDbType.DateTime);
+                    updateCommand.Parameters["@NewDateOpened"].Value = newIncident.DateOpened;
+
+                    updateCommand.Parameters.Add("@NewDateClosed", SqlDbType.DateTime);
+                    updateCommand.Parameters["@NewDateClosed"].Value = DateTime.Now;
+
+                    updateCommand.Parameters.Add("@NewTitle", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@NewTitle"].Value = newIncident.Title;
+
+                    updateCommand.Parameters.Add("@NewDescription", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@NewDescription"].Value = newIncident.Description;
+
+                    updateCommand.Parameters.Add("@FormerIncidentID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@FormerIncidentID"].Value = formerIncident.IncidentID;
+                    updateCommand.Parameters.Add("@FormerCustomerID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@FormerCustomerID"].Value = formerIncident.CustomerId;
+                    updateCommand.Parameters.Add("@FormerProductCode", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@FormerProductCode"].Value = formerIncident.ProductCode;
+
+                    if (formerIncident.TechID == null || formerIncident.TechID == 0)
+                    {
+                        updateCommand.Parameters.Add("@FormerTechID", SqlDbType.VarChar);
+                        updateCommand.Parameters["@FormerTechID"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@FormerTechID", System.Data.SqlDbType.Int);
+                        updateCommand.Parameters["@FormerTechID"].Value = formerIncident.TechID;
+                    }
+
+                    updateCommand.Parameters.Add("@FormerDateOpened", System.Data.SqlDbType.DateTime);
+                    updateCommand.Parameters["@FormerDateOpened"].Value = formerIncident.DateOpened;
+
+                    if (formerIncident.DateClosed == null || formerIncident.DateClosed == DateTime.MinValue)
+                    {
+                        updateCommand.Parameters.Add("@FormerDateClosed", SqlDbType.VarChar);
+                        updateCommand.Parameters["@FormerDateClosed"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@FormerDateClosed", System.Data.SqlDbType.DateTime);
+                        updateCommand.Parameters["@FormerDateClosed"].Value = formerIncident.DateClosed;
+                    }
+
+                    updateCommand.Parameters.Add("@FormerTitle", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@FormerTitle"].Value = formerIncident.Title;
+
+                    updateCommand.Parameters.Add("@FormerDescription", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@FormerDescription"].Value = formerIncident.Description;
+
+                    int count = updateCommand.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
         }
@@ -280,14 +366,29 @@ namespace TechSupport.DAL
         /// <summary>
         /// This method connects to the database and runs a query to update specific fields of the incident
         /// </summary>
-        /// <param name="incident">incident object</param>
-        public void UpdateIncident(Incident incident)
+        /// <param name="formerIncident">Former Incident object</param>
+        /// <param name="newIncident">new Incident object</param>
+        public bool UpdateIncident(Incident formerIncident, Incident newIncident)
         {
             string updateStatement =
                 "UPDATE Incidents SET " +
-                "TechID = @techID " +
-                ", Description = @description " +
-                "WHERE IncidentID = @incidentID";
+                "CustomerID = @NewCustomerID " +
+                ", ProductCode = @NewProductCode " +
+                ", TechID = @NewTechID " +
+                ", DateOpened = @NewDateOpened " +
+                ", DateClosed = @NewDateClosed " +
+                ", Title = @NewTitle " +
+                ", Description = @NewDescription " +
+                "WHERE IncidentID = @FormerIncidentID " +
+                "AND CustomerID = @FormerCustomerID " +
+                "AND ProductCode = @FormerProductCode " +
+                "AND (TechID = @FormerTechID " +
+                     "OR TechID IS NULL AND @FormerTechID IS NULL) " +
+                "AND DateOpened = @FormerDateOpened " +
+                "AND (DateClosed = @FormerDateClosed " +
+                     "OR DateClosed IS NULL AND @FormerDateClosed IS NULL) " +
+                "AND Title = @FormerTitle " +
+                "AND Description = @FormerDescription";
 
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
@@ -295,23 +396,89 @@ namespace TechSupport.DAL
 
                 using (SqlCommand updateCommand = new SqlCommand(updateStatement, connection))
                 {
-                    updateCommand.Parameters.Add("@incidentID", System.Data.SqlDbType.Int);
-                    updateCommand.Parameters["@incidentID"].Value = incident.IncidentID;
-                    updateCommand.Parameters.Add("@description", System.Data.SqlDbType.VarChar);
-                    updateCommand.Parameters["@description"].Value = incident.Description;
+                    updateCommand.Parameters.Add("@NewCustomerID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@NewCustomerID"].Value = newIncident.CustomerId;
+                    updateCommand.Parameters.Add("@NewProductCode", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@NewProductCode"].Value = newIncident.ProductCode;
 
-                    if (incident.TechID == null || incident.TechID == 0)
+                    if (newIncident.TechID == null || newIncident.TechID == 0)
                     {
-                        updateCommand.Parameters.Add("@techID", SqlDbType.VarChar);
-                        updateCommand.Parameters["@techID"].Value = DBNull.Value;
+                        updateCommand.Parameters.Add("@NewTechID", SqlDbType.VarChar);
+                        updateCommand.Parameters["@NewTechID"].Value = DBNull.Value;
                     }
                     else
                     {
-                        updateCommand.Parameters.Add("@techID", System.Data.SqlDbType.Int);
-                        updateCommand.Parameters["@techID"].Value = incident.TechID;
+                        updateCommand.Parameters.Add("@NewTechID", System.Data.SqlDbType.Int);
+                        updateCommand.Parameters["@NewTechID"].Value = newIncident.TechID;
                     }
 
-                    updateCommand.ExecuteNonQuery();
+                    updateCommand.Parameters.Add("@NewDateOpened", System.Data.SqlDbType.DateTime);
+                    updateCommand.Parameters["@NewDateOpened"].Value = newIncident.DateOpened;
+
+                    if (newIncident.DateClosed == null || newIncident.DateClosed == DateTime.MinValue)
+                    {
+                        updateCommand.Parameters.Add("@NewDateClosed", SqlDbType.VarChar);
+                        updateCommand.Parameters["@NewDateClosed"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@NewDateClosed", System.Data.SqlDbType.DateTime);
+                        updateCommand.Parameters["@NewDateClosed"].Value = newIncident.DateClosed;
+                    }
+
+                    updateCommand.Parameters.Add("@NewTitle", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@NewTitle"].Value = newIncident.Title;
+
+                    updateCommand.Parameters.Add("@NewDescription", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@NewDescription"].Value = newIncident.Description;
+
+                    updateCommand.Parameters.Add("@FormerIncidentID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@FormerIncidentID"].Value = formerIncident.IncidentID;
+                    updateCommand.Parameters.Add("@FormerCustomerID", System.Data.SqlDbType.Int);
+                    updateCommand.Parameters["@FormerCustomerID"].Value = formerIncident.CustomerId;
+                    updateCommand.Parameters.Add("@FormerProductCode", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@FormerProductCode"].Value = formerIncident.ProductCode;
+
+                    if (formerIncident.TechID == null || formerIncident.TechID == 0)
+                    {
+                        updateCommand.Parameters.Add("@FormerTechID", SqlDbType.VarChar);
+                        updateCommand.Parameters["@FormerTechID"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@FormerTechID", System.Data.SqlDbType.Int);
+                        updateCommand.Parameters["@FormerTechID"].Value = formerIncident.TechID;
+                    }
+
+                    updateCommand.Parameters.Add("@FormerDateOpened", System.Data.SqlDbType.DateTime);
+                    updateCommand.Parameters["@FormerDateOpened"].Value = formerIncident.DateOpened;
+
+                    if (formerIncident.DateClosed == null || formerIncident.DateClosed == DateTime.MinValue)
+                    {
+                        updateCommand.Parameters.Add("@FormerDateClosed", SqlDbType.VarChar);
+                        updateCommand.Parameters["@FormerDateClosed"].Value = DBNull.Value;
+                    }
+                    else
+                    {
+                        updateCommand.Parameters.Add("@FormerDateClosed", System.Data.SqlDbType.DateTime);
+                        updateCommand.Parameters["@FormerDateClosed"].Value = formerIncident.DateClosed;
+                    }
+
+                    updateCommand.Parameters.Add("@FormerTitle", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@FormerTitle"].Value = formerIncident.Title;
+
+                    updateCommand.Parameters.Add("@FormerDescription", System.Data.SqlDbType.VarChar);
+                    updateCommand.Parameters["@FormerDescription"].Value = formerIncident.Description;
+
+                    int count = updateCommand.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
         }
