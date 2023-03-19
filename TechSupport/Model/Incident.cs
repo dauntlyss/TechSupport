@@ -49,6 +49,8 @@ namespace TechSupport.Model
         /// Gets incident's DateClosed
         /// </summary>
         public DateTime? DateClosed { get; set; }
+        public string Customer { get; internal set; }
+        public string Name { get; internal set; }
 
         #endregion
 

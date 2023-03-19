@@ -143,5 +143,14 @@ namespace TechSupport.Controller
             return _incidentDBSource.CloseIncident(formerIncident, newIncident);
         }
 
+        /// <summary>
+        /// This method used to return open incidents assigned from DAL
+        /// </summary>
+        /// <param name="techID">technician id</param>
+        /// <returns>list of assigned open incident objects</returns>
+        public List<Incident> GetTechnicianOpenIncidents(int techID)
+        {
+            return _incidentDBSource.GetOpenIncidentsWithTech(techID);
+        }
     }
 }

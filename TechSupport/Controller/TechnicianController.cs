@@ -42,12 +42,21 @@ namespace TechSupport.Controller
         }
 
         /// <summary>
-        /// method used to get/return all the technicians
+        /// THis method is used to get/return all the technicians
         /// </summary>
         /// <returns>a list of all the technician objects</returns>
         public List<Technician> GetAllTechnicians()
         {
             return _technicianDBSource.GetAllTechnicians();
+        }
+
+        /// <summary>
+        /// This method gets all the techs assigned to incidents
+        /// </summary>
+        /// <returns>a list of assigned technician objects</returns>
+        public List<Technician> GetAssignedTechnicians()
+        {
+            return _technicianDBSource.GetAssignedTechnicians();
         }
 
         #endregion
