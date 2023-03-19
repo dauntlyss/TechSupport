@@ -28,49 +28,6 @@ namespace TechSupport.Controller
         {
             return _customerDBSource.GetAllCustomers();
         }
-        /*#region Data Members
-
-        private readonly CustomerDBDAL _customerDBSource;
-
-        #endregion
-
-        #region Constructors
-
-        /// <summary>
-        /// This method instantiates a CustomerController object
-        /// </summary>
-        public CustomerController()
-        {
-            _customerDBSource = new CustomerDBDAL();
-        }
-
-        #endregion
-
-        #region Methods
-
-        /// <summary>
-        /// This method returns all the customer names
-        /// </summary>
-        /// <returns>A list of all the customer ids and names</returns>
-        public List<CustomerIdAndName> GetAllCustomerIDAndNames()
-        {
-            return _customerDBSource.GetAllCustomerIdAndNames();
-        }
-
-        /// <summary>
-        /// This method retrievees a customer based on customer Id
-        /// </summary>
-        /// <param name="customerID">customer id</param>
-        /// <returns>list of customer objects</returns>
-        public List<Customer> GetCustomer(int customerID)
-        {
-            if (customerID < 1)
-            {
-                throw new ArgumentException("CustomerID cannot be less than 1");
-            }
-            return _customerDBSource.GetCustomer(customerID);
-        }
-
-        #endregion*/
+        
     }
 }
