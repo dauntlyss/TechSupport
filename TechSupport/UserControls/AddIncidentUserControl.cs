@@ -53,9 +53,6 @@ namespace TechSupport.UserControls
 
         private List<Customer> FillCustomerComboBox()
         {
-            /*customerComboBox.Items.Clear();
-            customerComboBox.Items.AddRange((new CustomerController()).GetAllCustomers().ToArray());
-            customerComboBox.SelectedIndex = 0;*/
             List<Customer> customers = _customerController.GetAllCustomers();
             customerComboBox.DataSource = customers;
             customerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -63,6 +60,7 @@ namespace TechSupport.UserControls
             customerComboBox.SelectedIndex = 0;
             return customers;
         }
+
         private void addIncidentButton_Click(object sender, EventArgs e)
         {
 

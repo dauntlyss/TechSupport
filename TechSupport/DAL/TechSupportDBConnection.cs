@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace TechSupport.DAL
 {
@@ -16,14 +17,23 @@ namespace TechSupport.DAL
         /// <summary>
         /// Used to connect to the DB
         /// </summary>
-        /// <returns>Conntection to the DB</returns>
+        /// <returns>Connection to the DB</returns>
         public static SqlConnection GetConnection()
         {
-            string connectionString = "Data Source=localhost;Initial Catalog=TechSupport;" +
+            try
+            {
+                string connectionString = "Data Source=localhost;Initial Catalog=TechSupport;" +
                 "Integrated Security=True";
 
-            SqlConnection connection = new SqlConnection(connectionString);
-            return connection;
+                SqlConnection connection = new SqlConnection(connectionString);
+                return connection;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                return GetConnection();
+            }
+            
         }
 
         #endregion
