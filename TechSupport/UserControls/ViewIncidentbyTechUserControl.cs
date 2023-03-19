@@ -40,7 +40,6 @@ namespace TechSupport.UserControls
             _technician = _technicianList[0];
 
             _technicianOpenIncidentList = _incidentController.GetTechnicianOpenIncidents(_technician.TechID);
-            PopulateDataGridView(_technicianOpenIncidentList);
         }
 
         private void NameComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,33 +57,17 @@ namespace TechSupport.UserControls
 
             _technicianOpenIncidentList = _incidentController.GetTechnicianOpenIncidents(_technician.TechID);
 
-            PopulateDataGridView(_technicianOpenIncidentList);
-        }
-
-        private void PopulateDataGridView(List<OpenIncidentAssigned> technicianOpenIncidentList)
-        {
-            technicianBindingSource1.Clear();
-
-            foreach (OpenIncidentAssigned go in technicianOpenIncidentList)
-            {
-                OpenIncidentAssigned assigned = new OpenIncidentAssigned();
-                assigned.Name = go.Name;
-                assigned.DateOpened = go.DateOpened.Date;
-                assigned.Customer = go.Customer;
-                assigned.Title = go.Title;
-                technicianBindingSource1.Add(assigned);
-            }
         }
 
         private void NameComboBox_VisibleChanged(object sender, EventArgs e)
         {
             _technicianList = _technicianController.GetAssignedTechnicians();
-            technicianNameComboBox.DataSource = _technicianList;
+            nameComboBox.DataSource = _technicianList;
 
-            _technician = _technicianList[0];
+            _technician = _technicianList[nameComboBox.SelectedIndex];
 
             _technicianOpenIncidentList = _incidentController.GetTechnicianOpenIncidents(_technician.TechID);
-            PopulateDataGridView(_technicianOpenIncidentList);
+            incidentsDataGridView.DataSource = _technicianOpenIncidentList;
         }
 
     }

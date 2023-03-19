@@ -32,23 +32,19 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.nameComboBox = new System.Windows.Forms.ComboBox();
             this.technicianBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.technicianNameComboBox = new System.Windows.Forms.BindingSource(this.components);
             this.emailLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.incidentsDataGridView = new System.Windows.Forms.DataGridView();
+            this.incidentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateOpenedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.techIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.technicianBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.technicianNameComboBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incidentsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incidentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -63,23 +59,19 @@
             // 
             // nameComboBox
             // 
-            this.nameComboBox.DataSource = this.technicianNameComboBox;
+            this.nameComboBox.DataSource = this.technicianBindingSource1;
             this.nameComboBox.DisplayMember = "Name";
             this.nameComboBox.FormattingEnabled = true;
             this.nameComboBox.Location = new System.Drawing.Point(111, 37);
             this.nameComboBox.Name = "nameComboBox";
             this.nameComboBox.Size = new System.Drawing.Size(519, 21);
             this.nameComboBox.TabIndex = 1;
-            this.nameComboBox.DropDown += new System.EventHandler(this.ViewIncidentbyTechUserControl_Load);
+            this.nameComboBox.SelectedIndexChanged += new System.EventHandler(this.NameComboBox_SelectedIndexChanged);
             this.nameComboBox.VisibleChanged += new System.EventHandler(this.NameComboBox_VisibleChanged);
             // 
             // technicianBindingSource1
             // 
             this.technicianBindingSource1.DataSource = typeof(TechSupport.Model.Technician);
-            // 
-            // technicianNameComboBox
-            // 
-            this.technicianNameComboBox.DataSource = typeof(TechSupport.Model.Technician);
             // 
             // emailLabel
             // 
@@ -111,7 +103,7 @@
             // 
             // phoneTextBox
             // 
-            this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.technicianNameComboBox, "Phone", true));
+            this.phoneTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.technicianBindingSource1, "Phone", true));
             this.phoneTextBox.Location = new System.Drawing.Point(111, 112);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(297, 20);
@@ -127,22 +119,22 @@
             this.productColumn,
             this.dateOpenedColumn,
             this.customerColumn,
-            this.titleColumn,
-            this.techIDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn});
-            this.incidentsDataGridView.DataSource = this.technicianBindingSource1;
+            this.titleColumn});
+            this.incidentsDataGridView.DataSource = this.incidentBindingSource;
             this.incidentsDataGridView.Location = new System.Drawing.Point(28, 164);
             this.incidentsDataGridView.Name = "incidentsDataGridView";
             this.incidentsDataGridView.ReadOnly = true;
             this.incidentsDataGridView.Size = new System.Drawing.Size(697, 321);
             this.incidentsDataGridView.TabIndex = 6;
             // 
+            // incidentBindingSource
+            // 
+            this.incidentBindingSource.DataSource = typeof(TechSupport.Model.Incident);
+            // 
             // productColumn
             // 
             this.productColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.productColumn.DataPropertyName = "productCode";
+            this.productColumn.DataPropertyName = "ProductCode";
             this.productColumn.HeaderText = "Product";
             this.productColumn.Name = "productColumn";
             this.productColumn.ReadOnly = true;
@@ -171,34 +163,6 @@
             this.titleColumn.Name = "titleColumn";
             this.titleColumn.ReadOnly = true;
             // 
-            // techIDDataGridViewTextBoxColumn
-            // 
-            this.techIDDataGridViewTextBoxColumn.DataPropertyName = "TechID";
-            this.techIDDataGridViewTextBoxColumn.HeaderText = "TechID";
-            this.techIDDataGridViewTextBoxColumn.Name = "techIDDataGridViewTextBoxColumn";
-            this.techIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // ViewIncidentbyTechUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,8 +177,8 @@
             this.Name = "ViewIncidentbyTechUserControl";
             this.Size = new System.Drawing.Size(766, 511);
             ((System.ComponentModel.ISupportInitialize)(this.technicianBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.technicianNameComboBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incidentsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.incidentBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,15 +193,11 @@
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.DataGridView incidentsDataGridView;
-        private System.Windows.Forms.BindingSource technicianNameComboBox;
         private System.Windows.Forms.BindingSource technicianBindingSource1;
+        private System.Windows.Forms.BindingSource incidentBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn productColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOpenedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn techIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
     }
 }
