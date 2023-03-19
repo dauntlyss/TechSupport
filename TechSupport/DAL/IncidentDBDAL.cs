@@ -488,47 +488,55 @@ namespace TechSupport.DAL
         /// </summary>
         /// <param name="techID">technician id</param>
         /// <returns>open incident assigned objects</returns>
-        public List<Incident> GetOpenIncidentsWithTech(int techID)
+        public List<OpenIncidentAssigned> GetOpenIncidentsWithTech(int techID)
         {
-            List<Incident> incidents = new List<Incident>();
+            List<OpenIncidentAssigned> technicianOpenIncidentList = new List<OpenIncidentAssigned>();
 
-            string selectStatement = @"SELECT p.Name AS 'Product', DateOpened, c.Name as 'Customer', Title
-                                       FROM Incidents AS i
-                                         JOIN Customers AS c ON i.CustomerID = c.CustomerID
-                                         JOIN Technicians AS t ON i.TechID = t.TechID
-                                         JOIN Products AS p ON i.ProductCode = p.ProductCode
-                                       WHERE t.TechID = @TechID
-                                         AND DateClosed IS NULL
-                                       ;";
+            string selectStatement =
+                "SELECT " +
+                "PRD.Name AS Name" +
+                ", INC.DateOpened " +
+                ", ISNULL(CUS.Name, '') AS Customer" +
+                ", INC.TechID" +
+                ", INC.Title " +
+                "FROM Incidents INC " +
+                "INNER JOIN Products PRD " +
+                "    ON INC.ProductCode = PRD.ProductCode " +
+                "LEFT JOIN Customers CUS " +
+                "    ON INC.CustomerID = CUS.CustomerID " +
+                "WHERE " +
+                "INC.DateClosed IS NULL " +
+                "AND INC.DateOpened IS NOT NULL " +
+                "AND INC.TechID = @TechID " +
+                "ORDER BY INC.DateOpened";
 
             using (SqlConnection connection = TechSupportDBConnection.GetConnection())
             {
                 connection.Open();
 
-                using (SqlCommand cmd = new SqlCommand(selectStatement, connection))
+                using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                 {
-                    cmd.Parameters.Add("TechID", SqlDbType.Int);
-                    cmd.Parameters["TechID"].Value = techID;
+                    selectCommand.Parameters.Add("@TechID", System.Data.SqlDbType.Int);
+                    selectCommand.Parameters["@TechID"].Value = techID;
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = selectCommand.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            Incident incident = new Incident
+                            OpenIncidentAssigned technicianOpenIncident = new OpenIncidentAssigned
                             {
-                                ProductCode = reader.GetString(reader.GetOrdinal("Product")),
-                                DateOpened = reader.GetDateTime(reader.GetOrdinal("DateOpened")),
-                                Customer = reader.GetString(reader.GetOrdinal("Customer")),
-                                Title = reader.GetString(reader.GetOrdinal("Title"))
+                                Name = reader["Name"].ToString(),
+                                DateOpened = (DateTime)reader["DateOpened"],
+                                Customer = reader["Customer"].ToString(),
+                                TechID = (int)reader["TechID"],
+                                Title = reader["Title"].ToString()
                             };
-
-                            incidents.Add(incident);
+                            technicianOpenIncidentList.Add(technicianOpenIncident);
                         }
                     }
                 }
             }
-
-            return incidents;
+            return technicianOpenIncidentList;
         }
 
         #endregion

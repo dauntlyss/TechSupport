@@ -148,7 +148,7 @@ namespace TechSupport.Controller
         /// </summary>
         /// <param name="techID">technician id</param>
         /// <returns>list of assigned open incident objects</returns>
-        public List<Incident> GetTechnicianOpenIncidents(int techID)
+        public List<OpenIncidentAssigned> GetTechnicianOpenIncidents(int techID)
         {
             return _incidentDBSource.GetOpenIncidentsWithTech(techID);
         }

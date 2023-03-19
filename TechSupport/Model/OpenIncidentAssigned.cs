@@ -11,7 +11,7 @@ namespace TechSupport.Model
     /// </summary>
     /// Author: Alyssa Harris
     /// Version: 3/15/23
-    internal class OpenIncidentAssigned
+    public class OpenIncidentAssigned
     {
         #region Data Members
 

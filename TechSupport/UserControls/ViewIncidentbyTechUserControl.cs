@@ -19,7 +19,7 @@ namespace TechSupport.UserControls
         private Technician _technician;
         private List<Technician> _technicianList;
         private TechnicianController _technicianController;
-        private List<Incident> _technicianOpenIncidentList;
+        private List<OpenIncidentAssigned> _technicianOpenIncidentList;
         private IncidentController _incidentController;
 
         public ViewIncidentbyTechUserControl()
@@ -32,7 +32,7 @@ namespace TechSupport.UserControls
             this.phoneTextBox.ReadOnly = true;
             this.nameComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-        private void TechnicianIncidentUserControl_Load(object sender, EventArgs e)
+        private void ViewIncidentbyTechUserControl_Load(object sender, EventArgs e)
         {
             _technicianList = _technicianController.GetAssignedTechnicians();
             nameComboBox.DataSource = _technicianList;
@@ -40,11 +40,10 @@ namespace TechSupport.UserControls
             _technician = _technicianList[0];
 
             _technicianOpenIncidentList = _incidentController.GetTechnicianOpenIncidents(_technician.TechID);
-            /*PopulateDataGridView(_technicianOpenIncidentList);*/
-            incidentsDataGridView.DataSource = _technicianList;
+            PopulateDataGridView(_technicianOpenIncidentList);
         }
 
-        private void TechnicianNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void NameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (nameComboBox.SelectedIndex < 0)
             {
@@ -58,26 +57,26 @@ namespace TechSupport.UserControls
             technicianBindingSource1.Add(_technician);
 
             _technicianOpenIncidentList = _incidentController.GetTechnicianOpenIncidents(_technician.TechID);
-            incidentsDataGridView.DataSource = _technicianList;
-            /*PopulateDataGridView(_technicianOpenIncidentList);*/
+
+            PopulateDataGridView(_technicianOpenIncidentList);
         }
 
-        private void PopulateDataGridView(List<Incident> technicianOpenIncidentList)
+        private void PopulateDataGridView(List<OpenIncidentAssigned> technicianOpenIncidentList)
         {
-            technicianOpenIncidentBindingSource.Clear();
+            technicianBindingSource1.Clear();
 
-            foreach (Incident go in technicianOpenIncidentList)
+            foreach (OpenIncidentAssigned go in technicianOpenIncidentList)
             {
                 OpenIncidentAssigned assigned = new OpenIncidentAssigned();
                 assigned.Name = go.Name;
                 assigned.DateOpened = go.DateOpened.Date;
                 assigned.Customer = go.Customer;
                 assigned.Title = go.Title;
-                technicianOpenIncidentBindingSource.Add(assigned);
+                technicianBindingSource1.Add(assigned);
             }
         }
 
-        private void TechnicianNameComboBox_VisibleChanged(object sender, EventArgs e)
+        private void NameComboBox_VisibleChanged(object sender, EventArgs e)
         {
             _technicianList = _technicianController.GetAssignedTechnicians();
             technicianNameComboBox.DataSource = _technicianList;
